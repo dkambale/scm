@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scm.app.model.Institute;
 import com.scm.app.model.Student;
-import com.scm.app.service.InstitueService;
 import com.scm.app.service.StudentService;
 
 @RestController
 @RequestMapping(name = "/institute", value = "/institute")
+// change end point
 public class StudentController {
 
 	@Autowired
 	StudentService service;
 
 	@PostMapping(name = "/addstudent", value = "/addstudent")
-	
+	// todo use only save, update , delete , getAll , getById endpoints
 	public ResponseEntity<Student> saveStudent(@RequestBody Student std) {
 
 		try {

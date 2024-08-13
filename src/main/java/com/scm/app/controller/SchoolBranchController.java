@@ -15,13 +15,14 @@ import com.scm.app.service.SchoolBranchService;
 
 @RestController
 @RequestMapping(name = "/institute", value = "/institute")
+// toto change this to school branch
 public class SchoolBranchController {
 
 	@Autowired
 	SchoolBranchService service;
 
 	@PostMapping(name = "/addbranch", value = "/addbranch")
-	
+	// todo use only save, update , delete , getAll , getById endpoints
 	public ResponseEntity<SchoolBranch> saveBranch(@RequestBody SchoolBranch branch) {
 
 		try {
@@ -31,4 +32,6 @@ public class SchoolBranchController {
 			return new ResponseEntity<SchoolBranch>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	// todo add CRUD endpoint for institute
+	
 }

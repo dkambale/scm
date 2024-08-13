@@ -29,4 +29,6 @@ public class InstituteController {
 			return new ResponseEntity<Institute>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	// todo add CRUD endpoint for institute
 }

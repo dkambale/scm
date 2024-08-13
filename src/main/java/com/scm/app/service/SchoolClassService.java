@@ -19,5 +19,6 @@ public class SchoolClassService {
 		return repo.save(sc);
 	}
 
+	// write method for save,update,getById,getAll
 }
 

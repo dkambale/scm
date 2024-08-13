@@ -17,4 +17,6 @@ public class InstitueService {
 		return repo.save(institute);
 
 	}
+	
+	// write method for save,update,getById,getAll
 }

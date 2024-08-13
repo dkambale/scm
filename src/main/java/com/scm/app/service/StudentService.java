@@ -17,5 +17,7 @@ public class StudentService {
 	public Student saveStudent(Student std) {
 		return repo.save(std);
 	}
+	
+	// write method for save,update,getById,getAll
 }
 

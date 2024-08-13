@@ -15,13 +15,14 @@ import com.scm.app.service.SchoolClassService;
 
 @RestController
 @RequestMapping(name = "/institute", value = "/institute")
+// change name and value to schoolclass
 public class SchoolClassController {
 
 	@Autowired
 	SchoolClassService service;
 
 	@PostMapping(name = "/addclass", value = "/addclass")
-	
+	// todo use only save, update , delete , getAll , getById endpoints
 	public ResponseEntity<SchoolClass> saveClass(@RequestBody SchoolClass sc) {
 
 		try {
@@ -31,4 +32,6 @@ public class SchoolClassController {
 			return new ResponseEntity<SchoolClass>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	// todo add CRUD endpoint for schoolClass
 }

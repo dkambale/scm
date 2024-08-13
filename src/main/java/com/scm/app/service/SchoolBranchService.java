@@ -1,3 +1,4 @@
+
 package com.scm.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,7 @@ public class SchoolBranchService {
 		
 		return repo.save(sb);
 	}
+	
+	// write method for save,update,getById,getAll
 }
 

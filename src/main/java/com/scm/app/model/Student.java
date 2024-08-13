@@ -20,6 +20,8 @@ public class Student {
 	private String email;
 	private Integer mobile;
 	
+	// add schoolbranchid if JPA is not adding that
+	// instituteId, SchoolBranchId
 	@ManyToOne
 	@JoinColumn(name="student_id")
 	private SchoolClass std;

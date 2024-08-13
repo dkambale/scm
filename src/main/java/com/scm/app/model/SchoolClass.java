@@ -20,6 +20,7 @@ public class SchoolClass {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	// add schoolbranchid if JPA is not adding that
 		
 	@ManyToOne
 	@JoinColumn(name="schoolbranch_id")

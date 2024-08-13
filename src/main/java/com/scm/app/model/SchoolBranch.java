@@ -20,7 +20,7 @@ public class SchoolBranch {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	
+	// add institute id
 	@ManyToOne
 	@JoinColumn(name="institute_id")
 	private Institute inst;
