@@ -1,5 +1,8 @@
 package com.scm.app.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,16 @@ public class InstitueService {
 	public Institute saveInstitute(Institute institute) {
 
 		return repo.save(institute);
-
 	}
-	
-	// write method for save,update,getById,getAll
+
+	public List<Institute> getAll() {
+		
+		return repo.findAll();
+	}
+
+	public Institute getById(Integer id) {
+		Optional<Institute> std = repo.findById(id);
+		return std.isPresent()? std.get() : new Institute();
+	}
+
 }
