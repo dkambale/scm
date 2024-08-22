@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scm.app.model.Institute;
 import com.scm.app.model.Student;
-import com.scm.app.repo.InstituteRepo;
 import com.scm.app.repo.StudentRepo;
 
 @Service
@@ -30,8 +28,8 @@ public class StudentService {
 		return std.isPresent()? std.get() : new Student();
 	}
 
-	public Student saveInstitute(Student institute) {
-		return repo.save(institute);
+	public Student saveInstitute(Student student) {
+		return repo.save(student);
 	}
 	
 }

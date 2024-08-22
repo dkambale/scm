@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scm.app.model.Institute;
 import com.scm.app.model.SchoolBranch;
-import com.scm.app.service.InstitueService;
 import com.scm.app.service.SchoolBranchService;
 
 @RestController
