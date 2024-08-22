@@ -7,7 +7,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="student")
 public class Student {
@@ -22,54 +30,5 @@ public class Student {
 	
 	@ManyToOne
 	@JoinColumn(name="student_id")
-	private SchoolClass std;
-
-	public Integer getRollno() {
-		return rollno;
-	}
-
-	public void setRollno(Integer rollno) {
-		this.rollno = rollno;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Integer getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(Integer mobile) {
-		this.mobile = mobile;
-	}
-
-	public SchoolClass getStd() {
-		return std;
-	}
-
-	public void setStd(SchoolClass std) {
-		this.std = std;
-	}
-	
+	private SchoolClass std;	
 }
