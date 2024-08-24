@@ -11,15 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "schoolbranch")
 public class SchoolBranch {
@@ -29,11 +21,17 @@ public class SchoolBranch {
 	private Integer id;
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name="institute_id")
-	private Institute inst;
-
-	@OneToMany(mappedBy="sb")
-	private List<SchoolClass> schoolclass = new ArrayList<SchoolClass>();
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }

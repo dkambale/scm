@@ -23,7 +23,7 @@ public class InstituteController {
 	@Autowired
 	InstitueService service;
 
-	@PostMapping(name = "/add", value = "/add")
+	@PostMapping(name = "/save", value = "/save")
 	
 	public ResponseEntity<Institute> addInstitute(@RequestBody Institute institute) {
 
