@@ -7,39 +7,46 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="division")
+@Table(name = "division")
 public class Division {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
-	private Integer stdid;
-	private Integer teaid;
-	
-	public Integer getId() {
+	private Long schoolClassId;
+	private Long schoolBranchId;
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getStdid() {
-		return stdid;
+
+	public Long getSchoolClassId() {
+		return schoolClassId;
 	}
-	public void setStdid(Integer stdid) {
-		this.stdid = stdid;
+
+	public void setSchoolClassId(Long schoolClassId) {
+		this.schoolClassId = schoolClassId;
 	}
-	public Integer getTeaid() {
-		return teaid;
+
+	public Long getSchoolBranchId() {
+		return schoolBranchId;
 	}
-	public void setTeaid(Integer teaid) {
-		this.teaid = teaid;
+
+	public void setSchoolBranchId(Long schoolBranchId) {
+		this.schoolBranchId = schoolBranchId;
 	}
-	
+
 }
