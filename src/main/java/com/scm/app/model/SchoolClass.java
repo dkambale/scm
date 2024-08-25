@@ -7,26 +7,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "schoolclass")
+@Table(name = "school_class")
 public class SchoolClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String name;
-	private Long schoolbranchid;
+	private Long schoolbranchId;
 	private Long instituteId;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public Long getSchoolbranchid() {
-		return schoolbranchid;
+	public Long getSchoolbranchId() {
+		return schoolbranchId;
 	}
 
-	public void setSchoolbranchid(Long schoolbranchid) {
-		this.schoolbranchid = schoolbranchid;
+	public void setSchoolbranchId(Long schoolbranchId) {
+		this.schoolbranchId = schoolbranchId;
 	}
 
 	public Long getInstituteId() {
@@ -37,7 +37,7 @@ public class SchoolClass {
 		this.instituteId = instituteId;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
