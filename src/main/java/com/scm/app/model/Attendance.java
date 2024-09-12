@@ -20,4 +20,44 @@ public class Attendance {
 	private Date attendanceDate;
 	private Long subjectId;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getSchooldClassId() {
+		return schooldClassId;
+	}
+
+	public void setSchooldClassId(Long schooldClassId) {
+		this.schooldClassId = schooldClassId;
+	}
+
+	public Long getDivisionId() {
+		return divisionId;
+	}
+
+	public void setDivisionId(Long divisionId) {
+		this.divisionId = divisionId;
+	}
+
+	public Date getAttendanceDate() {
+		return attendanceDate;
+	}
+
+	public void setAttendanceDate(Date attendanceDate) {
+		this.attendanceDate = attendanceDate;
+	}
+
+	public Long getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(Long subjectId) {
+		this.subjectId = subjectId;
+	}
+
 }

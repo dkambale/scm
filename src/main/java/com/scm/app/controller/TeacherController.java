@@ -25,7 +25,7 @@ public class TeacherController {
 	TeacherService service;
 
 	@PostMapping(name = "/save", value = "/save")
-	
+
 	public ResponseEntity<Teacher> saveTeacher(@RequestBody Teacher tea) {
 
 		try {
@@ -35,16 +35,17 @@ public class TeacherController {
 			return new ResponseEntity<Teacher>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 	@GetMapping("/getall")
-	public List<Teacher> getAll(){
+	public List<Teacher> getAll() {
 		return service.getAll();
 	}
-	
+
 	@GetMapping("/getbyid")
-	public Teacher getById(@RequestParam("id") Integer id) {
+	public Teacher getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
-	
+
 	@PutMapping(name = "/update", value = "/update")
 	public ResponseEntity<Teacher> updateTeacher(@RequestBody Teacher teacher) {
 		try {
@@ -55,4 +56,3 @@ public class TeacherController {
 		}
 	}
 }
-

@@ -22,7 +22,7 @@ public class TeacherService {
 		return repo.findAll();
 	}
 
-	public Teacher getById(Integer id) {
+	public Teacher getById(Long id) {
 		Optional<Teacher> teacher = repo.findById(id);
 		return teacher.isPresent()? teacher.get() : new Teacher();
 	}

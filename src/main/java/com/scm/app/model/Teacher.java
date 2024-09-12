@@ -14,12 +14,39 @@ public class Teacher {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String firstName;
+	private String lastName;
+	private String middleName;
 	private String address;
 	private String email;
-	private Integer mobile;
+	private Long mobile;
 	private String userName;
 	private String password;
 	private String type;
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -77,11 +104,11 @@ public class Teacher {
 		this.email = email;
 	}
 
-	public Integer getMobile() {
+	public Long getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(Integer mobile) {
+	public void setMobile(Long mobile) {
 		this.mobile = mobile;
 	}
 
