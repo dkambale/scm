@@ -25,7 +25,7 @@ public class SchoolBranchService {
 		return repo.findAll();
 	}
 
-	public SchoolBranch getById(Integer id) {
+	public SchoolBranch getById(Long id) {
 		Optional<SchoolBranch> std = repo.findById(id);
 		return std.isPresent()? std.get() : new SchoolBranch();
 	}

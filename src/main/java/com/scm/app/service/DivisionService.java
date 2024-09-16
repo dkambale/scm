@@ -11,7 +11,7 @@ import com.scm.app.repo.DivisionRepo;
 
 @Service
 public class DivisionService {
-	
+
 	@Autowired
 	DivisionRepo repo;
 
@@ -21,12 +21,12 @@ public class DivisionService {
 	}
 
 	public List<Division> getAll() {
-		
+
 		return repo.findAll();
 	}
 
-	public Division getById(Integer id) {
+	public Division getById(Long id) {
 		Optional<Division> std = repo.findById(id);
-		return std.isPresent()? std.get() : new Division();
+		return std.isPresent() ? std.get() : new Division();
 	}
 }

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.scm.app.model.SchoolClass;
 
-public interface SchoolClassRepo extends JpaRepository<SchoolClass,Integer> {
+public interface SchoolClassRepo extends JpaRepository<SchoolClass,Long> {
 
 }

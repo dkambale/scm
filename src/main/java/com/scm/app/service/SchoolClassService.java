@@ -23,7 +23,7 @@ public class SchoolClassService {
 		return repo.findAll();
 	}
 
-	public SchoolClass getById(Integer id) {
+	public SchoolClass getById(Long id) {
 		Optional<SchoolClass> std = repo.findById(id);
 		return std.isPresent()? std.get() : new SchoolClass();
 	}

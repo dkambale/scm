@@ -39,7 +39,7 @@ import com.scm.app.service.UserService;
 		}
 		
 		@GetMapping("/getbyid")
-		public User getById(@RequestParam("id") Integer id) {
+		public User getById(@RequestParam("id") Long id) {
 			return service.getById(id);
 		}
 		

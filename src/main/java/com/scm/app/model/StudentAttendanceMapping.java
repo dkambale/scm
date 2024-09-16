@@ -7,13 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "student_attendance")
-public class StudentAttendance {
+@Table(name = "student_attendance_mapping")
+public class StudentAttendanceMapping {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	//handle by onemany
+	// handle by onemany
 	private Long attendanceId;
 	private Long studentId;
 	private boolean isPresent;

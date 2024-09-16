@@ -4,6 +4,15 @@ public class StudentPresenty {
 
 	Long studentId;
 	Boolean isPresent;
+	String studentName;
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
 	public Long getStudentId() {
 		return studentId;

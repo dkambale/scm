@@ -40,7 +40,7 @@ import com.scm.app.service.DivisionService;
 		}
 		
 		@GetMapping("/getbyid")
-		public Division getById(@RequestParam("id") Integer id) {
+		public Division getById(@RequestParam("id") Long id) {
 			return service.getById(id);
 		}
 		

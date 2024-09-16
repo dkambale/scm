@@ -42,7 +42,7 @@ public class SchoolClassController {
 	}
 	
 	@GetMapping("/getbyid")
-	public SchoolClass getById(@RequestParam("id") Integer id) {
+	public SchoolClass getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 	

@@ -41,7 +41,7 @@ public class SchoolBranchController {
 	}
 	
 	@GetMapping("/getbyid")
-	public SchoolBranch getById(@RequestParam("id") Integer id) {
+	public SchoolBranch getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 	
