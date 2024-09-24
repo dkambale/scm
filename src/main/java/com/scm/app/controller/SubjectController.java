@@ -13,44 +13,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scm.app.model.Course;
-import com.scm.app.service.CourseService;
+import com.scm.app.model.Subject;
+import com.scm.app.service.SubjectService;
 
 @RestController
-@RequestMapping(name = "/course", value = "/course")
-public class CourseController {
+@RequestMapping(name = "/subject", value = "/subject")
+public class SubjectController {
+
 	@Autowired
-	private CourseService service;
+	SubjectService service;
 
 	@PostMapping(name = "/save", value = "/save")
 
-	public ResponseEntity<Course> addCourse(@RequestBody Course cr) {
+	public ResponseEntity<Subject> savesubject(@RequestBody Subject tea) {
 
 		try {
-			Course course = service.saveCourse(cr);
-			return new ResponseEntity<Course>(course, HttpStatus.OK);
+			Subject subject = service.saveSubject(tea);
+			return new ResponseEntity<Subject>(subject, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<Course>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Subject>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@GetMapping("/getall")
-	public List<Course> getAll() {
+	public List<Subject> getAll() {
 		return service.getAll();
 	}
 
 	@GetMapping("/getbyid")
-	public Course getById(@RequestParam("id") Long id) {
+	public Subject getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 
 	@PutMapping(name = "/update", value = "/update")
-	public ResponseEntity<Course> updateCourse(@RequestBody Course cr) {
+	public ResponseEntity<Subject> updatesubject(@RequestBody Subject subject) {
 		try {
-			Course course = service.saveCourse(cr);
-			return new ResponseEntity<Course>(course, HttpStatus.OK);
+			Subject subject1 = service.saveSubject(subject);
+			return new ResponseEntity<Subject>(subject1, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<Course>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Subject>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scm.app.model.Course;
 import com.scm.app.model.Review;
-import com.scm.app.service.CourseService;
 import com.scm.app.service.ReviewService;
 
 @RestController

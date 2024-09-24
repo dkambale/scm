@@ -48,7 +48,7 @@ public class AttendanceController {
 			@PathParam("divisionId") long divisionId, @PathParam("classId") long classId,
 			@PathParam("subjectId") long subjectId, @PathParam("date") Date date) {
 
-		StudentAttendanceResponse response = service.getStudentAttendance(divisionId, classId, subjectId,date);
+		StudentAttendanceResponse response = service.getStudentAttendance(divisionId, classId, subjectId, date);
 		return new ResponseEntity<StudentAttendanceResponse>(response, HttpStatus.OK);
 	}
 
