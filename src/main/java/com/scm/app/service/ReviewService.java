@@ -29,4 +29,9 @@ public class ReviewService
 		Optional<Review> std = repo.findById(id);
 		return std.isPresent()? std.get() : new Review();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id.intValue());
+		return true;
+	}
 }

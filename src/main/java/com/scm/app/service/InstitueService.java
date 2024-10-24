@@ -29,5 +29,10 @@ public class InstitueService {
 		Optional<Institute> std = repo.findById(id);
 		return std.isPresent()? std.get() : new Institute();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id.intValue());
+		return true;
+	}
 
 }

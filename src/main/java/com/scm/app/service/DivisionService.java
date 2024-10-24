@@ -29,4 +29,9 @@ public class DivisionService {
 		Optional<Division> std = repo.findById(id);
 		return std.isPresent() ? std.get() : new Division();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 }

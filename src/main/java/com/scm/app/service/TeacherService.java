@@ -26,5 +26,10 @@ public class TeacherService {
 		Optional<Teacher> teacher = repo.findById(id);
 		return teacher.isPresent()? teacher.get() : new Teacher();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 
 }

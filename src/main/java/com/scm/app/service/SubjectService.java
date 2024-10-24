@@ -27,5 +27,10 @@ public class SubjectService {
 		Optional<Subject> subject = repo.findById(id);
 		return subject.isPresent() ? subject.get() : new Subject();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 
 }

@@ -12,11 +12,11 @@ public class Student {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer rollno;
+	private Long rollno;
 	private String name;
 	private String address;
 	private String email;
-	private Integer mobile;
+	private String mobile;
 	private String userName;
 	private String password;
 	private String type;
@@ -46,10 +46,10 @@ public class Student {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getRollno() {
+	public Long getRollno() {
 		return rollno;
 	}
-	public void setRollno(Integer rollno) {
+	public void setRollno(Long rollno) {
 		this.rollno = rollno;
 	}
 	public String getName() {
@@ -70,10 +70,10 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(Integer mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	

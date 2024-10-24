@@ -27,6 +27,11 @@ public class SchoolClassService {
 		Optional<SchoolClass> std = repo.findById(id);
 		return std.isPresent()? std.get() : new SchoolClass();
 	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 
 }
 

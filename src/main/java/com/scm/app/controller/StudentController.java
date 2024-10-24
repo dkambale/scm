@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,7 +42,7 @@ public class StudentController {
 	}
 	
 	@GetMapping("/getbyid")
-	public Student getById(@RequestParam("id") Integer id) {
+	public Student getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 	
@@ -53,5 +54,10 @@ public class StudentController {
 		} catch (Exception e) {
 			return new ResponseEntity<Student>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	@DeleteMapping("/delete")
+	public boolean delete(@RequestParam("id") Long id) {
+		return service.deleteById(id);
 	}
 }

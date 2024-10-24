@@ -27,4 +27,8 @@ public class UserService {
 		return usr.isPresent()? usr.get() : new User();
 	}
 	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 }

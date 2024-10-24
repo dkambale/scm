@@ -23,13 +23,18 @@ public class StudentService {
 		return repo.findAll();
 	}
 
-	public Student getById(Integer id) {
+	public Student getById(Long id) {
 		Optional<Student> std = repo.findById(id);
 		return std.isPresent()? std.get() : new Student();
 	}
 
 	public Student saveInstitute(Student student) {
 		return repo.save(student);
+	}
+	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
 	}
 	
 }

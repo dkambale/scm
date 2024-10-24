@@ -29,5 +29,11 @@ public class CourseService
 		Optional<Course> std = repo.findById(id);
 		return std.isPresent()? std.get() : new Course();
 	}
+	
+
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
 
 }

@@ -34,5 +34,10 @@ public class SchoolBranchService {
 		return repo.save(sc);
 	}
 	
+	public boolean deleteById(Long id) {
+		repo.deleteById(id);
+		return true;
+	}
+	
 }
 
