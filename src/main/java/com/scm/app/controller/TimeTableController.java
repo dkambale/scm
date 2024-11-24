@@ -14,50 +14,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.scm.app.model.Teacher;
-import com.scm.app.service.TeacherService;
+import com.scm.app.model.TimeTable;
+import com.scm.app.service.TimeTableService;
 
 @RestController
-@RequestMapping(name = "/teacher", value = "/teacher")
-public class TeacherController {
+@RequestMapping(name = "/timetable", value = "/timetable")
+public class TimeTableController {
 
 	@Autowired
-	TeacherService service;
+	TimeTableService service;
 
 	@PostMapping(name = "/save", value = "/save")
-
-	public ResponseEntity<Teacher> saveTeacher(@RequestBody Teacher tea) {
+	public ResponseEntity<TimeTable> saveTimeTable(@RequestBody TimeTable usr) {
 
 		try {
-			Teacher teacher = service.saveTeacher(tea);
-			return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
+			TimeTable timeTable = service.saveTimeTable(usr);
+			return new ResponseEntity<TimeTable>(timeTable, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<Teacher>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<TimeTable>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@GetMapping("/getall")
-	public List<Teacher> getAll() {
+	public List<TimeTable> getAll() {
 		return service.getAll();
 	}
 
 	@GetMapping("/getbyid")
-	public Teacher getById(@RequestParam("id") Long id) {
+	public TimeTable getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 
 	@PutMapping(name = "/update", value = "/update")
-	public ResponseEntity<Teacher> updateTeacher(@RequestBody Teacher teacher) {
+	public ResponseEntity<TimeTable> updateInstitute(@RequestBody TimeTable usr1) {
 		try {
-			Teacher teacher1 = service.saveTeacher(teacher);
-			return new ResponseEntity<Teacher>(teacher1, HttpStatus.OK);
+			TimeTable timeTable1 = service.saveTimeTable(usr1);
+			return new ResponseEntity<TimeTable>(timeTable1, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<Teacher>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<TimeTable>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@DeleteMapping("/delete")
 	public boolean delete(@RequestParam("id") Long id) {
 		return service.deleteById(id);
 	}
+
 }

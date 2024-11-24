@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.scm.app.model.AuthResponse;
 import com.scm.app.model.Student;
 import com.scm.app.model.Teacher;
+import com.scm.app.model.enums.LoginTypeEnum;
 import com.scm.app.model.enums.StatusCode;
 import com.scm.app.repo.StudentRepo;
 import com.scm.app.repo.TeacherRepo;
@@ -27,7 +28,7 @@ public class LoginService {
 		response.setStatus(StatusCode.FAIL.toString());
 		response.setStatusCode(402);
 
-		if (type.equals("STUDENT")) {
+		if (type.equals(LoginTypeEnum.TEACHER.toString())) {
 			Student student = studentRepo.getByUserNameAndPassword(username, password);
 			if (student != null) {
 				response.setStatus(StatusCode.SUCCESS.toString());
