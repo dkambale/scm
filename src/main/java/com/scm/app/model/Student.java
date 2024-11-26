@@ -1,9 +1,16 @@
 package com.scm.app.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,6 +19,7 @@ public class Student {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@PrimaryKeyJoinColumn
 	private Long rollno;
 	private String name;
 	private String address;
@@ -23,6 +31,20 @@ public class Student {
 	private String status;
 	private Long divisionId;
 	private Long classId;
+
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "student", joinColumns = @JoinColumn(name = "rollno"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//	private Set<Role> roles;
+//	
+//	
+//
+//	public Set<Role> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(Set<Role> roles) {
+//		this.roles = roles;
+//	}
 
 	public Long getDivisionId() {
 		return divisionId;
