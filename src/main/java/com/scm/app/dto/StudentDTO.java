@@ -1,19 +1,9 @@
-package com.scm.app.model;
+package com.scm.app.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import com.scm.app.model.Role;
 
-@Entity
-@Table(name = "student")
-public class Student {
+public class StudentDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@PrimaryKeyJoinColumn
 	private Long rollno;
 	private String name;
 	private String address;
@@ -27,19 +17,15 @@ public class Student {
 	private Long classId;
 	private Long roleId;
 
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "student", joinColumns = @JoinColumn(name = "rollno"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//	private Set<Role> roles;
-//	
-//	
-//
-//	public Set<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(Set<Role> roles) {
-//		this.roles = roles;
-//	}
+	private Role role;
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public Long getRoleId() {
 		return roleId;

@@ -28,12 +28,13 @@ public class LoginService {
 		response.setStatus(StatusCode.FAIL.toString());
 		response.setStatusCode(402);
 
-		if (type.equals(LoginTypeEnum.TEACHER.toString())) {
+		if (type.equals(LoginTypeEnum.STUDENT.toString())) {
 			Student student = studentRepo.getByUserNameAndPassword(username, password);
 			if (student != null) {
 				response.setStatus(StatusCode.SUCCESS.toString());
 				response.setStatusCode(200);
 				response.setAccessToken(UUID.randomUUID().toString());
+				
 			}
 		} else {
 			Teacher teacher = teacherRepo.getByUserNameAndPassword(username, password);

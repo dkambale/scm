@@ -32,9 +32,15 @@ public class StudentService {
 		return repo.save(student);
 	}
 	
+	
 	public boolean deleteById(Long id) {
 		repo.deleteById(id);
 		return true;
+	}
+
+	public List<Student> getByDivisionIdAndClassId(Long classId, Long divisionId) {
+		repo.getByDivisionIdAndClassId(divisionId, classId);
+		return null;
 	}
 	
 }

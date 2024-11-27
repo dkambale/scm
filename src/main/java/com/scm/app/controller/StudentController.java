@@ -26,7 +26,7 @@ public class StudentController {
 	StudentService service;
 
 	@PostMapping(name = "/save", value = "/save")
-	
+
 	public ResponseEntity<Student> saveStudent(@RequestBody Student std) {
 
 		try {
@@ -36,16 +36,18 @@ public class StudentController {
 			return new ResponseEntity<Student>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 	@GetMapping("/getall")
-	public List<Student> getAll(){
+	public List<Student> getAll(
+			) {
 		return service.getAll();
 	}
-	
+
 	@GetMapping("/getbyid")
 	public Student getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
-	
+
 	@PutMapping(name = "/update", value = "/update")
 	public ResponseEntity<Student> updateInstitute(@RequestBody Student institute) {
 		try {
@@ -55,9 +57,22 @@ public class StudentController {
 			return new ResponseEntity<Student>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@DeleteMapping("/delete")
 	public boolean delete(@RequestParam("id") Long id) {
 		return service.deleteById(id);
 	}
+
+	@GetMapping("/getByDivisionIdAndClassId")
+	public ResponseEntity<List<Student>> getByDivisionIdAndClassId(@RequestParam("classId") Long classId,
+			@RequestParam("divisionId") Long divisionId) {
+
+		try {
+			List<Student> institue = service.getByDivisionIdAndClassId(classId, divisionId);
+			return new ResponseEntity<List<Student>>(institue, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<List<Student>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }
