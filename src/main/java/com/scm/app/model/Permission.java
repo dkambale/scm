@@ -1,10 +1,13 @@
 package com.scm.app.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +31,19 @@ public class Permission {
 	private String name;
 
 	private String entityName;
+
+	@Embedded
+	@OneToOne(targetEntity = Action.class, cascade = CascadeType.ALL)
+	private Action actions;
+	
+
+	public Action getActions() {
+		return actions;
+	}
+
+	public void setActions(Action actions) {
+		this.actions = actions;
+	}
 
 	public Long getId() {
 		return id;

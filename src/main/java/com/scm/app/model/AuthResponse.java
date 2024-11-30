@@ -5,6 +5,15 @@ public class AuthResponse {
 	String status;
 	String accessToken;
 	Integer statusCode;
+	Role role;
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public String getStatus() {
 		return status;
