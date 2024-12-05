@@ -17,6 +17,15 @@ public class StudentAttendanceMapping {
 	private Long attendanceId;
 	private Long studentId;
 	private boolean isPresent;
+	private String studentName;
+
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
 	public Long getId() {
 		return id;

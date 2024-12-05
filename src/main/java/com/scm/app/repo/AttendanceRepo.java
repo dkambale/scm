@@ -8,6 +8,7 @@ import com.scm.app.model.Attendance;
 
 public interface AttendanceRepo extends JpaRepository<Attendance, Long> {
 
-	Attendance getByDivisionIdAndAttendanceDateAndSubjectId(Long divisionId, Date attendanceDate, Long subjectId);
+	Attendance getByClassIdAndDivisionIdAndAttendanceDateAndSubjectId(Long classId, Long divisionId,
+			Date attendanceDate, Long subjectId);
 
 }

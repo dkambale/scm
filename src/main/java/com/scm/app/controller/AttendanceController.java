@@ -1,6 +1,7 @@
 package com.scm.app.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.scm.app.model.Attendance;
 import com.scm.app.model.requests.StudentAttendanceRequest;
 import com.scm.app.model.requests.StudentAttendanceUpdateRequest;
 import com.scm.app.model.response.StudentAttendanceResponse;
@@ -50,6 +52,18 @@ public class AttendanceController {
 
 		StudentAttendanceResponse response = service.getStudentAttendance(divisionId, classId, subjectId, date);
 		return new ResponseEntity<StudentAttendanceResponse>(response, HttpStatus.OK);
+	}
+
+	public ResponseEntity<List<Attendance>> getAllAttendance() {
+
+		try {
+			List<Attendance> all = service.getAllAttendance();
+
+			return new ResponseEntity<List<Attendance>>(all, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<List<Attendance>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 	}
 
 }
