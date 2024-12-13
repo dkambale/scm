@@ -58,7 +58,7 @@ public class AttendanceService {
 
 	public boolean updateStudentAttendance(StudentAttendanceUpdateRequest updateRequest) {
 
-		Attendance attendance = attendanceRepo.getByClassIdAndDivisionIdAndAttendanceDateAndSubjectId(
+		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(
 				updateRequest.getClassId(), updateRequest.getDivisionId(), updateRequest.getAttendanceDate(),
 				updateRequest.getSubjectId());
 		StudentAttendanceMapping stm = attendanceMappingRepo.getByAttendanceIdAndStudentId(attendance.getId(),
@@ -70,7 +70,7 @@ public class AttendanceService {
 	}
 
 	public StudentAttendanceResponse getStudentAttendance(long divisionId, long classId, long subjectId, Date date) {
-		Attendance attendance = attendanceRepo.getByClassIdAndDivisionIdAndAttendanceDateAndSubjectId(classId,
+		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(classId,
 				divisionId, date, subjectId);
 		StudentAttendanceResponse response = new StudentAttendanceResponse();
 		response.setClassId(classId);

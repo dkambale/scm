@@ -3,12 +3,14 @@ package com.scm.app.repo;
 import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.scm.app.model.Attendance;
 
 public interface AttendanceRepo extends JpaRepository<Attendance, Long> {
 
-	Attendance getByClassIdAndDivisionIdAndAttendanceDateAndSubjectId(Long classId, Long divisionId,
+	@Query(" from Attendance a where a.schooldClassId =:schooldClassId and a.divisionId =:divisionId and a.attendanceDate=:attendanceDate and a.subjectId =:subjectId")
+	Attendance getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(Long schooldClassId, Long divisionId,
 			Date attendanceDate, Long subjectId);
 
 }
