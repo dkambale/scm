@@ -2,6 +2,8 @@ package com.scm.app.controller;
 
 import java.util.List;
 
+import com.scm.app.model.AuthResponse;
+import com.scm.app.model.UserLoginInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,4 +61,5 @@ public class UserController {
 	public boolean delete(@RequestParam("id") Long id) {
 		return service.deleteById(id);
 	}
+
 }

@@ -2,41 +2,50 @@ package com.scm.app.model;
 
 public class AuthResponse {
 
-	String status;
-	String accessToken;
-	Integer statusCode;
-	Role role;
+    String status;
+    String accessToken;
+    Integer statusCode;
+    Role role;
+    Object data;
 
-	public Role getRole() {
-		return role;
-	}
+    public Object getData() {
+        return data;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public void setData(Object data) {
+        this.data = data;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
-	public String getAccessToken() {
-		return accessToken;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public Integer getStatusCode() {
-		return statusCode;
-	}
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-	public void setStatusCode(Integer statusCode) {
-		this.statusCode = statusCode;
-	}
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
+    }
 
 }

@@ -2,13 +2,11 @@ package com.scm.app.service;
 
 import java.util.UUID;
 
+import com.scm.app.model.*;
+import com.scm.app.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scm.app.model.AuthResponse;
-import com.scm.app.model.Role;
-import com.scm.app.model.Student;
-import com.scm.app.model.Teacher;
 import com.scm.app.model.enums.LoginTypeEnum;
 import com.scm.app.model.enums.StatusCode;
 import com.scm.app.repo.RoleRepo;
@@ -18,44 +16,32 @@ import com.scm.app.repo.TeacherRepo;
 @Service
 public class LoginService {
 
-	@Autowired
-	StudentRepo studentRepo;
+    @Autowired
+    StudentRepo studentRepo;
 
-	@Autowired
-	TeacherRepo teacherRepo;
-	
-	@Autowired
-	RoleRepo roleRepo;
+    @Autowired
+    TeacherRepo teacherRepo;
 
-	public AuthResponse login(String username, String password, String type) {
+    @Autowired
+    UserRepo userRepo;
 
-		AuthResponse response = new AuthResponse();
-		response.setStatus(StatusCode.FAIL.toString());
-		response.setStatusCode(402);
+    @Autowired
+    RoleRepo roleRepo;
 
-		if (type.equals(LoginTypeEnum.STUDENT.toString())) {
-			Student student = studentRepo.getByUserNameAndPassword(username, password);
-			if (student != null) {
-				response.setStatus(StatusCode.SUCCESS.toString());
-				response.setStatusCode(200);
-				response.setAccessToken(UUID.randomUUID().toString());
-				Role role = roleRepo.findById(student.getRoleId()).get();
-				response.setRole(role);
-				
-			}
-		} else {
-			Teacher teacher = teacherRepo.getByUserNameAndPassword(username, password);
-			if (teacher != null) {
-				response.setStatus(StatusCode.SUCCESS.toString());
-				response.setStatusCode(200);
-				response.setAccessToken(UUID.randomUUID().toString());
-				Role role = roleRepo.findById(teacher.getRoleId()).get();
-				response.setRole(role);
-			}
-		}
+    public AuthResponse login(String username, String password, String type) {
+        AuthResponse response = new AuthResponse();
+        response.setStatus(StatusCode.FAIL.toString());
+        response.setStatusCode(402);
+        User user = userRepo.getByUserNameAndPassword(username, password);
+        if (user != null) {
+            response.setStatus(StatusCode.SUCCESS.toString());
+            response.setStatusCode(200);
+            response.setAccessToken(UUID.randomUUID().toString());
+            response.setRole(user.getRole());
+            response.setData(user);
+        }
 
-		return response;
-
-	}
+        return response;
+    }
 
 }
