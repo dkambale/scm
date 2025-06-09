@@ -38,8 +38,17 @@ public class TimeTable {
 	
 	@Embedded
 	@OneToMany(targetEntity = DayTimeTable.class, cascade = CascadeType.ALL)
-	// @OneToMany(mappedBy = "timeTable", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<DayTimeTable> dayTimeTable;
+
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;

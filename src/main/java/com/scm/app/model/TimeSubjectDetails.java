@@ -34,17 +34,15 @@ public class TimeSubjectDetails {
 
 	Integer sequence;
 
-//	@ManyToOne
-//	@JoinColumn(name = "time_subject_details_id")
-//	DayTimeTable dayTimeTable;
-//
-//	public DayTimeTable getDayTimeTable() {
-//		return dayTimeTable;
-//	}
-//
-//	public void setDayTimeTable(DayTimeTable dayTimeTable) {
-//		this.dayTimeTable = dayTimeTable;
-//	}
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;

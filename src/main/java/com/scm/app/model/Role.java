@@ -34,6 +34,16 @@ public class Role {
 	@OneToMany(targetEntity = Permission.class, cascade = CascadeType.ALL)
 	private Set<Permission> permissions;
 
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
 	public Long getId() {
 		return id;
 	}

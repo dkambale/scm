@@ -30,6 +30,7 @@ public class User {
     @ManyToOne
     private Role role;
 
+
     public Long getRollNo() {
         return rollNo;
     }

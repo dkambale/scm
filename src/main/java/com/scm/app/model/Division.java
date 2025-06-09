@@ -16,6 +16,15 @@ public class Division {
 	private String name;
 	private Long schoolClassId;
 	private Long schoolBranchId;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;

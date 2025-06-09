@@ -15,6 +15,15 @@ public class Subject {
 	private Long id;
 	private String name;
 	private String subjectCode;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getSubjectCode() {
 		return subjectCode;

@@ -16,6 +16,16 @@ public class Review
 
 	private String description;
 
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
 	public Integer getId() {
 		return id;
 	}

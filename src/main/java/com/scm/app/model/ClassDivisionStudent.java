@@ -17,5 +17,45 @@ public class ClassDivisionStudent {
 	private Long divisionId;
 	//handle by oneToMany
 	private Long studentId;
+	private Integer accountId;
 
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getSchoolClassId() {
+		return schoolClassId;
+	}
+
+	public void setSchoolClassId(Long schoolClassId) {
+		this.schoolClassId = schoolClassId;
+	}
+
+	public Long getDivisionId() {
+		return divisionId;
+	}
+
+	public void setDivisionId(Long divisionId) {
+		this.divisionId = divisionId;
+	}
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
 }

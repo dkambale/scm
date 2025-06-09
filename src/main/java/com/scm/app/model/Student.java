@@ -26,7 +26,15 @@ public class Student {
 	private Long divisionId;
 	private Long classId;
 	private Long roleId;
+	private Integer accountId;
 
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	@JoinTable(name = "student", joinColumns = @JoinColumn(name = "rollno"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //	private Set<Role> roles;

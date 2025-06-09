@@ -15,7 +15,15 @@ public class ClassSubject {
 	private Long id;
 	private Long subjectId;
 	private Long classId;
+	private Integer accountId;
 
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -39,5 +47,6 @@ public class ClassSubject {
 	public void setClassId(Long classId) {
 		this.classId = classId;
 	}
+
 
 }

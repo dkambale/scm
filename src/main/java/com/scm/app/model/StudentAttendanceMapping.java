@@ -18,6 +18,15 @@ public class StudentAttendanceMapping {
 	private Long studentId;
 	private boolean isPresent;
 	private String studentName;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getStudentName() {
 		return studentName;

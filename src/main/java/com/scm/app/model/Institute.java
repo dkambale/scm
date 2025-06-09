@@ -20,6 +20,15 @@ public class Institute {
 	private String email;
 	private String faxNumber;
 	private String code;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getAddress() {
 		return address;

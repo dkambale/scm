@@ -18,6 +18,15 @@ public class StudentClassMapping {
 	Long divisionId;
 	Integer year;
 	Boolean status;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;

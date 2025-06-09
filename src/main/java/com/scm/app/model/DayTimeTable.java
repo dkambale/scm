@@ -29,13 +29,17 @@ public class DayTimeTable {
 
 	@Embedded
 	@OneToMany(targetEntity = TimeSubjectDetails.class, cascade = CascadeType.ALL)
-	//@OneToMany(mappedBy = "dayTimeTable", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<TimeSubjectDetails> tsd;
 
-//	@ManyToOne
-//	@JoinColumn(name = "time_table_id")
-//	TimeTable timeTable;
+	private Integer accountId;
 
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -44,13 +48,6 @@ public class DayTimeTable {
 		this.id = id;
 	}
 
-//	public TimeTable getTimeTable() {
-//		return timeTable;
-//	}
-//
-//	public void setTimeTable(TimeTable timeTable) {
-//		this.timeTable = timeTable;
-//	}
 
 	public String getDayName() {
 		return dayName;

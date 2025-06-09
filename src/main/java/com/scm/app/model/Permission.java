@@ -35,6 +35,16 @@ public class Permission {
 	@Embedded
 	@OneToOne(targetEntity = Action.class, cascade = CascadeType.ALL)
 	private Action actions;
+
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 	
 
 	public Action getActions() {

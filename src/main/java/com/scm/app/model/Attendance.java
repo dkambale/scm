@@ -19,6 +19,15 @@ public class Attendance {
 	private Long divisionId;
 	private Date attendanceDate;
 	private Long subjectId;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 	public Long getId() {
 		return id;

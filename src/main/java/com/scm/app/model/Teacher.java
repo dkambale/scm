@@ -26,6 +26,15 @@ public class Teacher {
 	private String password;
 	private String type;
 	private Long roleId;
+	private Integer accountId;
+
+	public Integer getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Integer accountId) {
+		this.accountId = accountId;
+	}
 
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	@JoinTable(name = "teacher", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
