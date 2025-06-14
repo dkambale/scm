@@ -2,23 +2,19 @@ package com.scm.app.controller;
 
 import java.util.List;
 
+import com.scm.app.model.Subject;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.scm.app.model.SchoolClass;
 import com.scm.app.service.SchoolClassService;
 
 @RestController
-@RequestMapping(name = "/schoolclass", value = "/schoolclass")
+@RequestMapping(name = "api/schoolclasses", value = "api/schoolclasses")
 
 public class SchoolClassController {
 
@@ -26,7 +22,6 @@ public class SchoolClassController {
 	SchoolClassService service;
 
 	@PostMapping(name = "/save", value = "/save")
-	
 	public ResponseEntity<SchoolClass> saveClass(@RequestBody SchoolClass sc) {
 
 		try {
@@ -36,13 +31,14 @@ public class SchoolClassController {
 			return new ResponseEntity<SchoolClass>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@GetMapping("/getall")
-	public List<SchoolClass> getAll(){
-		return service.getAll();
+
+	@GetMapping("/getAll/{accountId}")
+	public PaginatedResponse<SchoolClass> getAll(@PathVariable("accountId") Integer accountId,
+											 @RequestBody PaginationRequest paginationRequest) {
+		return service.getAll(paginationRequest, accountId);
 	}
 	
-	@GetMapping("/getbyid")
+	@GetMapping("/getById")
 	public SchoolClass getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
@@ -50,7 +46,7 @@ public class SchoolClassController {
 	@PutMapping(name = "/update", value = "/update")
 	public ResponseEntity<SchoolClass> updateInstitute(@RequestBody SchoolClass institute) {
 		try {
-			SchoolClass institue = service.saveClass(institute);
+			SchoolClass institue = service.updateClass(institute);
 			return new ResponseEntity<SchoolClass>(institue, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<SchoolClass>(HttpStatus.INTERNAL_SERVER_ERROR);

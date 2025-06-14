@@ -3,14 +3,13 @@ package com.scm.app.controller;
 import java.util.Date;
 import java.util.List;
 
+import com.scm.app.model.Course;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.scm.app.model.Attendance;
 import com.scm.app.model.requests.StudentAttendanceRequest;
@@ -64,6 +63,12 @@ public class AttendanceController {
 			return new ResponseEntity<List<Attendance>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+
+	@GetMapping("/getAll/{accountId}")
+	public PaginatedResponse<Attendance> getAll(@PathVariable("accountId") Integer accountId,
+											@RequestBody PaginationRequest paginationRequest) {
+		return service.getAll(paginationRequest, accountId);
 	}
 
 }

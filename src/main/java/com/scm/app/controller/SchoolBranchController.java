@@ -2,23 +2,19 @@ package com.scm.app.controller;
 
 import java.util.List;
 
+import com.scm.app.model.SchoolClass;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.scm.app.model.SchoolBranch;
 import com.scm.app.service.SchoolBranchService;
 
 @RestController
-@RequestMapping(name = "/schoolbranch", value = "/schoolbranch")
+@RequestMapping(name = "api/schoolbranches", value = "/schoolbranches")
 public class SchoolBranchController {
 
 	@Autowired
@@ -35,13 +31,14 @@ public class SchoolBranchController {
 			return new ResponseEntity<SchoolBranch>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@GetMapping("/getall")
-	public List<SchoolBranch> getAll(){
-		return service.getAll();
+
+	@GetMapping("/getAll/{accountId}")
+	public PaginatedResponse<SchoolBranch> getAll(@PathVariable("accountId") Integer accountId,
+												 @RequestBody PaginationRequest paginationRequest) {
+		return service.getAll(paginationRequest, accountId);
 	}
 	
-	@GetMapping("/getbyid")
+	@GetMapping("/getById")
 	public SchoolBranch getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
@@ -49,8 +46,8 @@ public class SchoolBranchController {
 	@PutMapping(name = "/update", value = "/update")
 	public ResponseEntity<SchoolBranch> updateInstitute(@RequestBody SchoolBranch institute) {
 		try {
-			SchoolBranch institue = service.saveInstitute(institute);
-			return new ResponseEntity<SchoolBranch>(institue, HttpStatus.OK);
+			SchoolBranch schoolBranch = service.updateSchoolBranch(institute);
+			return new ResponseEntity<SchoolBranch>(schoolBranch, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<SchoolBranch>(HttpStatus.INTERNAL_SERVER_ERROR);
 			//
