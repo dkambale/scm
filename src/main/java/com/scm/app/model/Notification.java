@@ -1,4 +1,4 @@
-package com.scm.app.model.response;
+package com.scm.app.model;
 
 
 import jakarta.persistence.*;
