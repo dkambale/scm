@@ -1,11 +1,11 @@
 package com.scm.app.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.scm.app.model.TimeTable;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.repo.TimeTableRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,8 @@ public class TeacherService {
 	
 	@Autowired
 	TeacherRepo repo;
-	
+
+
 	public Teacher saveTeacher(Teacher std) {
 		return repo.save(std);
 	}
@@ -29,9 +30,9 @@ public class TeacherService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<TimeTable> tbPage = repo.findByClassNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		Page<Teacher> tbPage = repo.findByUserNameContainingAndAccountId(request.getSearch(),accountId, pageable);
 
-		PaginatedResponse<TimeTable> response = new PaginatedResponse<>();
+		PaginatedResponse<Teacher> response = new PaginatedResponse<>();
 		response.setContent(tbPage.getContent());
 		response.setPageNumber(tbPage.getNumber());
 		response.setPageSize(tbPage.getSize());

@@ -1,7 +1,7 @@
 package com.scm.app.service;
 
 
-import com.scm.app.model.response.Notification;
+import com.scm.app.model.Notification;
 
 import com.scm.app.exception.ResourceNotFoundException;
 import com.scm.app.repo.NotificationRepository;

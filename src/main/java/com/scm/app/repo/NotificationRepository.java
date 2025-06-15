@@ -1,7 +1,7 @@
 package com.scm.app.repo;
 
 
-import com.scm.app.model.response.Notification;
+import com.scm.app.model.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;

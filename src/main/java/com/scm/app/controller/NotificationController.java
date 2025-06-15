@@ -1,7 +1,7 @@
 package com.scm.app.controller;
 
 
-import com.scm.app.model.response.Notification;
+import com.scm.app.model.Notification;
 import com.scm.app.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
