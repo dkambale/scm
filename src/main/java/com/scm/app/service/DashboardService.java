@@ -24,14 +24,14 @@ public class DashboardService {
 	@Autowired
 	SubjectRepo subjectRepo;
 
-	public Dashboard getDashboard(String type) {
+	public Dashboard getDashboard(String type,Integer accountId) {
 		Dashboard dasahbaord = new Dashboard();
 		Map<String, String> map = new HashMap<>();
-		long teacherCount = teacherRepo.count();
+		long teacherCount = teacherRepo.countByAccountId(accountId);
 		map.put(DashboardNameEnum.TeacherCount.name(), "" + teacherCount);
-		long studentCount = studentRepo.count();
+		long studentCount = studentRepo.countByAccountId(accountId);
 		map.put(DashboardNameEnum.StudentCount.name(), "" + studentCount);
-		long subjectCount = subjectRepo.count();
+		long subjectCount = subjectRepo.countByAccountId(accountId);
 		map.put(DashboardNameEnum.SubjectCount.name(), "" + subjectCount);
 		dasahbaord.setNameVsValue(map);
 		return dasahbaord;

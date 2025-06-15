@@ -3,7 +3,14 @@ package com.scm.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.scm.app.model.TimeTable;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.scm.app.model.Teacher;
 import com.scm.app.repo.TeacherRepo;
@@ -18,8 +25,21 @@ public class TeacherService {
 		return repo.save(std);
 	}
 
-	public List<Teacher> getAll() {
-		return repo.findAll();
+	public PaginatedResponse<Teacher> getAll(PaginationRequest request, Integer accountId) {
+
+		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
+		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
+		Page<TimeTable> tbPage = repo.findByClassNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+
+		PaginatedResponse<TimeTable> response = new PaginatedResponse<>();
+		response.setContent(tbPage.getContent());
+		response.setPageNumber(tbPage.getNumber());
+		response.setPageSize(tbPage.getSize());
+		response.setTotalElements(tbPage.getTotalElements());
+		response.setTotalPages(tbPage.getTotalPages());
+		response.setLastPage(tbPage.isLast());
+
+		return response;
 	}
 
 	public Teacher getById(Long id) {

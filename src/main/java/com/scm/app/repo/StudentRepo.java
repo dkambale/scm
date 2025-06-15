@@ -12,4 +12,5 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
 
 	List<Student> getByDivisionIdAndClassId(Long divisionId, Long classId);
 
+    long countByAccountId(Integer accountId);
 }

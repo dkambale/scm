@@ -5,7 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.scm.app.model.Course;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.scm.app.model.Attendance;
@@ -96,5 +103,22 @@ public class AttendanceService {
 	public List<Attendance> getAllAttendance() {
 
 		return attendanceRepo.findAll();
+	}
+
+	public PaginatedResponse<Attendance> getAll(PaginationRequest request, Integer accountId) {
+
+		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
+		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
+		Page<Attendance> userPage = attendanceRepo.findByAccountId(accountId, pageable);
+
+		PaginatedResponse<Attendance> response = new PaginatedResponse<>();
+		response.setContent(userPage.getContent());
+		response.setPageNumber(userPage.getNumber());
+		response.setPageSize(userPage.getSize());
+		response.setTotalElements(userPage.getTotalElements());
+		response.setTotalPages(userPage.getTotalPages());
+		response.setLastPage(userPage.isLast());
+
+		return response;
 	}
 }
