@@ -14,13 +14,13 @@ import com.scm.app.service.DashboardService;
 import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping(name = "api/dashboard", value = "/dashboard")
+@RequestMapping(name = "api/dashboard", value = "api/dashboard")
 public class DashboardController {
 
 	@Autowired
 	DashboardService dashboardService;
 
-	@GetMapping(name = "/getCounts", value = "getCounts")
+	@GetMapping(name = "/getCounts/{accountId}", value = "/getCounts/{accountId}")
 	public ResponseEntity<Dashboard> getDashboard(@PathParam(value = "type") String type,
 	@PathVariable("accountId") Integer accountId) {
 

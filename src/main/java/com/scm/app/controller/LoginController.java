@@ -13,7 +13,7 @@ import com.scm.app.model.UserLoginInfo;
 import com.scm.app.service.LoginService;
 
 @RestController
-@RequestMapping(name = "/user", value = "/user")
+@RequestMapping(name = "api/users", value = "api/users")
 public class LoginController {
 
 	@Autowired

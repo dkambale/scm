@@ -12,7 +12,7 @@ import com.scm.app.model.User;
 import com.scm.app.service.UserService;
 
 @RestController
-@RequestMapping(name = "api/users", value = "/user")
+@RequestMapping(name = "api/users", value = "api/users")
 public class UserController {
 
     @Autowired

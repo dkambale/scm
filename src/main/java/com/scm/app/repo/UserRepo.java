@@ -15,4 +15,6 @@ public interface UserRepo extends JpaRepository <User,Long>{
 
     Page<User> findByFirstNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
+    Page<User> findByAccountId(Integer accountId, Pageable pageable);
+
 }
