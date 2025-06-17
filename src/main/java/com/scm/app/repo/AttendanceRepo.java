@@ -17,6 +17,5 @@ public interface AttendanceRepo extends JpaRepository<Attendance, Long> {
 
     Page<Attendance> findByAccountId(Integer accountId, Pageable pageable);
 
-	Page<Attendance> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
 }

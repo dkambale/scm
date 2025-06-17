@@ -62,7 +62,7 @@ public class NotificationService  {
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
         Page<Notification> userPage =null;
         if(request.getSearch()!= null && request.getSearch().isEmpty()) {
-            userPage = repository.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+            userPage = repository.findByMessageContainingAndAccountId(request.getSearch(),accountId, pageable);
         } else {
             userPage =repository.findByAccountId(accountId,pageable);
         }

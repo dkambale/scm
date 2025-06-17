@@ -106,13 +106,7 @@ public class AttendanceService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Attendance> userPage =null;
-		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
-			userPage = attendanceRepo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
-		} else {
-			userPage =attendanceRepo.findByAccountId(accountId, pageable);
-		}
-
+		Page<Attendance> userPage =attendanceRepo.findByAccountId(accountId, pageable);
 		PaginatedResponse<Attendance> response = new PaginatedResponse<>();
 		response.setContent(userPage.getContent());
 		response.setPageNumber(userPage.getNumber());
