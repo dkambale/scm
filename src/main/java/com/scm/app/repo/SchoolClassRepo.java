@@ -11,4 +11,7 @@ public interface SchoolClassRepo extends JpaRepository<SchoolClass,Long> {
     SchoolClass findByNameAndAccountId(String name, Integer accountId);
 
     Page<SchoolClass> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+
+    Page<SchoolClass> findByAccountId(Integer accountId, Pageable pageable);
+
 }

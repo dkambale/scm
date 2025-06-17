@@ -13,5 +13,8 @@ public interface TeacherRepo extends JpaRepository<Teacher, Long> {
 
     Page<Teacher> findByUserNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
+    Page<Teacher> findByAccountId(Integer accountId, Pageable pageable);
+
+
     long countByAccountId(Integer accountId);
 }

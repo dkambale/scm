@@ -3,6 +3,7 @@ package com.scm.app.service;
 import java.util.Optional;
 
 import com.scm.app.model.TimeTable;
+import com.scm.app.model.User;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
 import com.scm.app.repo.TimeTableRepo;
@@ -30,7 +31,13 @@ public class TeacherService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Teacher> tbPage = repo.findByUserNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+
+		Page<Teacher> tbPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			tbPage= repo.findByUserNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			tbPage =repo.findByAccountId(accountId,pageable);
+		}
 
 		PaginatedResponse<Teacher> response = new PaginatedResponse<>();
 		response.setContent(tbPage.getContent());

@@ -30,7 +30,7 @@ public class ReviewController
 			return new ResponseEntity<Review>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<Review> getAll(@PathVariable("accountId") Integer accountId,
 										  @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);

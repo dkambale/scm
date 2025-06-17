@@ -29,7 +29,7 @@ public class DivisionController {
 		}
 	}
 
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<Division> getAll(@PathVariable("accountId") Integer accountId,
 											   @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);

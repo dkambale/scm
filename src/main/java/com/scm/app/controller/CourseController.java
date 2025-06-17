@@ -31,7 +31,7 @@ public class CourseController {
         }
     }
 
-    @GetMapping("/getAll/{accountId}")
+    @PostMapping("/getAll/{accountId}")
     public PaginatedResponse<Course> getAll(@PathVariable("accountId") Integer accountId,
                                           @RequestBody PaginationRequest paginationRequest) {
         return service.getAll(paginationRequest, accountId);
@@ -41,6 +41,7 @@ public class CourseController {
     public Course getById(@RequestParam("id") Long id) {
         return service.getById(id);
     }
+
     @PutMapping(name = "/update", value = "/update")
     public ResponseEntity<Course> updateCourse(@RequestBody Course cr) {
         try {

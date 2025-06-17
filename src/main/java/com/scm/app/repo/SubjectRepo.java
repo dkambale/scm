@@ -12,4 +12,7 @@ public interface SubjectRepo extends JpaRepository<Subject, Long> {
     Subject findByNameAndAccountId(String name, Integer accountId);
 
     long countByAccountId(Integer accountId);
+
+    Page<Subject> findByAccountId(Integer accountId, Pageable pageable);
+
 }

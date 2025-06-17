@@ -13,4 +13,7 @@ public interface CourseRepo extends JpaRepository<Course, Long> {
     Page<Course> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
     Course getByName(String name);
+
+    Page<Course> findByAccountId(Integer accountId, Pageable pageable);
+
 }

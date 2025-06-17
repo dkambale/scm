@@ -32,7 +32,7 @@ public class SubjectController {
 		}
 	}
 
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<Subject> getAll(@PathVariable("accountId") Integer accountId,
 										  @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);

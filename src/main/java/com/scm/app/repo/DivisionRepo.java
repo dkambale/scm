@@ -11,4 +11,7 @@ public interface DivisionRepo extends JpaRepository<Division,Long> {
     Division getByName(String name);
 
     Page<Division> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+
+    Page<Division> findByAccountId(Integer accountId, Pageable pageable);
+
 }

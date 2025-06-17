@@ -42,7 +42,12 @@ public class SubjectService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Subject> userPage = repo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		Page<Subject> userPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			userPage = repo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			userPage =repo.findByAccountId(accountId,pageable);
+		}
 
 		PaginatedResponse<Subject> response = new PaginatedResponse<>();
 		response.setContent(userPage.getContent());

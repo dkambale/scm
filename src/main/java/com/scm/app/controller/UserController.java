@@ -29,7 +29,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getAll/{accountId}")
+    @PostMapping("/getAll/{accountId}")
     public PaginatedResponse<User> getAll(@PathVariable("accountId") Integer accountId,
                                           @RequestBody PaginationRequest paginationRequest) {
         return service.getAll(paginationRequest, accountId);

@@ -14,7 +14,7 @@ import com.scm.app.model.TimeTable;
 import com.scm.app.service.TimeTableService;
 
 @RestController
-@RequestMapping(name = "/timetable", value = "/timetable")
+@RequestMapping(name = "api/timetable", value = "api/timetable")
 public class TimeTableController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class TimeTableController {
 		}
 	}
 
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<TimeTable> getAll(@PathVariable("accountId") Integer accountId,
 										  @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);

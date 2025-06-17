@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.scm.app.model.Role;
+import com.scm.app.model.User;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,12 @@ public class ReviewService
 	public PaginatedResponse<Review> getAll(PaginationRequest request, Integer accountId) {
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Review> userPage = repo.findByDescriptionContainingAndAccountId(request.getSearch(),accountId, pageable);
+		Page<Review> userPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			userPage = repo.findByDescriptionContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			userPage =repo.findByAccountId(accountId,pageable);
+		}
 
 		PaginatedResponse<Review> response = new PaginatedResponse<>();
 		response.setContent(userPage.getContent());

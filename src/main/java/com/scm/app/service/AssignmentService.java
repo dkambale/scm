@@ -1,8 +1,15 @@
 package com.scm.app.service;
 
 import com.scm.app.model.Assignment;
+import com.scm.app.model.Attendance;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import com.scm.app.repo.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -34,5 +41,27 @@ public class AssignmentService {
 
     public void deleteAssignment(Long id) {
         repository.deleteById(id);
+    }
+
+    public PaginatedResponse<Assignment> getAll(PaginationRequest request, Integer accountId) {
+
+        Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
+        Page<Assignment> userPage =null;
+        if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+            userPage = repository.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+        } else {
+            userPage =repository.findByAccountId(accountId, pageable);
+        }
+
+        PaginatedResponse<Assignment> response = new PaginatedResponse<>();
+        response.setContent(userPage.getContent());
+        response.setPageNumber(userPage.getNumber());
+        response.setPageSize(userPage.getSize());
+        response.setTotalElements(userPage.getTotalElements());
+        response.setTotalPages(userPage.getTotalPages());
+        response.setLastPage(userPage.isLast());
+
+        return response;
     }
 }

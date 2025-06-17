@@ -14,4 +14,7 @@ public interface InstituteRepo extends JpaRepository<Institute, Integer> {
     Page<Institute> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
     Institute getByName(String name);
+
+    Page<Institute> findByAccountId(Integer accountId, Pageable pageable);
+
 }

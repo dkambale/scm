@@ -2,6 +2,9 @@ package com.scm.app.controller;
 
 
 import com.scm.app.model.Notification;
+import com.scm.app.model.User;
+import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.PaginatedResponse;
 import com.scm.app.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notifications")
+@RequestMapping(name = "api/notifications", value = "api/notifications")
 public class NotificationController {
 
     @Autowired
     private NotificationService service;
 
-    @PostMapping
+    @PostMapping(name = "/save", value = "/save")
     public Notification create(@RequestBody Notification notification) {
         return service.createNotification(notification);
     }
@@ -43,6 +46,12 @@ public class NotificationController {
     @DeleteMapping("/delete/{accountId}")
     public void delete(@PathVariable Long accountId) {
         service.deleteNotificationByAccountId(accountId);
+    }
+
+    @PostMapping("/getAll/{accountId}")
+    public PaginatedResponse<Notification> getAll(@PathVariable("accountId") Integer accountId,
+                                          @RequestBody PaginationRequest paginationRequest) {
+        return service.getAll(paginationRequest, accountId);
     }
 }
 

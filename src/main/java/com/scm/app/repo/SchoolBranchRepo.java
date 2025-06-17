@@ -11,4 +11,7 @@ public interface SchoolBranchRepo extends JpaRepository<SchoolBranch,Long> {
     Page<SchoolBranch> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
     SchoolBranch findByNameAndAccountId(String name, Integer accountId);
+
+    Page<SchoolBranch> findByAccountId(Integer accountId, Pageable pageable);
+
 }

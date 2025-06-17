@@ -31,7 +31,7 @@ public class InstituteController {
 		}
 	}
 
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<Institute> getAll(@PathVariable("accountId") Integer accountId,
 											@RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);

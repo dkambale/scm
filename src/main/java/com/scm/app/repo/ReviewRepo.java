@@ -12,4 +12,7 @@ public interface ReviewRepo extends JpaRepository<Review, Integer>
 {
 
     Page<Review> findByDescriptionContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+
+    Page<Review> findByAccountId(Integer accountId, Pageable pageable);
+
 }

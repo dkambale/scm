@@ -45,7 +45,12 @@ public class CourseService
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Course> userPage = repo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		Page<Course> userPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			userPage = repo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			userPage =repo.findByAccountId(accountId,pageable);
+		}
 
 		PaginatedResponse<Course> response = new PaginatedResponse<>();
 		response.setContent(userPage.getContent());

@@ -10,5 +10,8 @@ public interface RoleRepo extends JpaRepository<Role,Long> {
     Role findByNameAndAccountId(String name, Integer accountId);
 
     Page<Role> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+
+    Page<Role> findByAccountId(Integer accountId, Pageable pageable);
+
 }
 

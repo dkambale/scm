@@ -33,7 +33,12 @@ public class TimeTableService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<TimeTable> tbPage = repo.findByClassNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		Page<TimeTable> tbPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			tbPage = repo.findByClassNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			tbPage =repo.findByAccountId(accountId,pageable);
+		}
 
 		PaginatedResponse<TimeTable> response = new PaginatedResponse<>();
 		response.setContent(tbPage.getContent());

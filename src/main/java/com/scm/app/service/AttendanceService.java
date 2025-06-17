@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.scm.app.model.Course;
+import com.scm.app.model.*;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.scm.app.model.Attendance;
-import com.scm.app.model.Student;
-import com.scm.app.model.StudentAttendanceMapping;
 import com.scm.app.model.mapper.Mappers;
 import com.scm.app.model.requests.StudentAttendanceRequest;
 import com.scm.app.model.requests.StudentAttendanceUpdateRequest;
@@ -109,7 +106,12 @@ public class AttendanceService {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
-		Page<Attendance> userPage = attendanceRepo.findByAccountId(accountId, pageable);
+		Page<Attendance> userPage =null;
+		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+			userPage = attendanceRepo.findByNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+		} else {
+			userPage =attendanceRepo.findByAccountId(accountId, pageable);
+		}
 
 		PaginatedResponse<Attendance> response = new PaginatedResponse<>();
 		response.setContent(userPage.getContent());

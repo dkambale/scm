@@ -20,7 +20,7 @@ import com.scm.app.service.AttendanceService;
 import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping(name = "/attendance", value = "/attendance")
+@RequestMapping(name = "api/attendance", value = "api/attendance")
 public class AttendanceController {
 
 	@Autowired
@@ -65,7 +65,7 @@ public class AttendanceController {
 
 	}
 
-	@GetMapping("/getAll/{accountId}")
+	@PostMapping("/getAll/{accountId}")
 	public PaginatedResponse<Attendance> getAll(@PathVariable("accountId") Integer accountId,
 											@RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);
