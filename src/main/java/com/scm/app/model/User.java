@@ -13,7 +13,7 @@ public class User {
     private Long id;
     private String password;
     private String email;
-    private Integer mobile;
+    private String mobile;
     private String mobileNumber;
     private Long rollNo;
     private String firstName;
@@ -171,11 +171,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(Integer mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
