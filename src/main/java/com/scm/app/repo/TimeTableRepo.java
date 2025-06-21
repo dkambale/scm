@@ -10,6 +10,6 @@ public interface TimeTableRepo extends JpaRepository<TimeTable, Long> {
 
     Page<TimeTable> findByClassNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
 
-    Page<TimeTable> findByAccountId( Integer accountId, Pageable pageable);
+    Page<TimeTable> findByAccountId(Integer accountId, Pageable pageable);
 
 }
