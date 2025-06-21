@@ -42,15 +42,15 @@ public class UserService {
 		return repo.save(usr);
 	}
 
-	public PaginatedResponse<User> getAll(PaginationRequest request, Integer accountId) {
+	public PaginatedResponse<User> getAll(PaginationRequest request, Integer accountId,String type) {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortBy()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
 		Page<User> userPage =null;
 		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
-			userPage = repo.findByFirstNameContainingAndAccountId(request.getSearch(),accountId, pageable);
+			userPage = repo.findByFirstNameContainingAndAccountIdAndType(request.getSearch(),accountId,type, pageable);
 		} else {
-			userPage =repo.findByAccountId(accountId,pageable);
+			userPage =repo.findByAccountIdAndType(accountId,type,pageable);
 		}
 
 		PaginatedResponse<User> response = new PaginatedResponse<>();

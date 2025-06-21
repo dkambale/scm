@@ -14,7 +14,7 @@ import com.scm.app.model.SchoolBranch;
 import com.scm.app.service.SchoolBranchService;
 
 @RestController
-@RequestMapping(name = "api/schoolbranches", value = "/schoolbranches")
+@RequestMapping(name = "api/schoolBranches", value = "api/schoolBranches")
 public class SchoolBranchController {
 
 	@Autowired

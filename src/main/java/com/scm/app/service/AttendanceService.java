@@ -104,7 +104,7 @@ public class AttendanceService {
 
 	public PaginatedResponse<Attendance> getAll(PaginationRequest request, Integer accountId) {
 
-		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortDir()).ascending() : Sort.by(request.getSortBy()).descending();
+		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortBy()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
 		Page<Attendance> userPage =attendanceRepo.findByAccountId(accountId, pageable);
 		PaginatedResponse<Attendance> response = new PaginatedResponse<>();

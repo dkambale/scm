@@ -14,7 +14,7 @@ import com.scm.app.model.SchoolClass;
 import com.scm.app.service.SchoolClassService;
 
 @RestController
-@RequestMapping(name = "api/schoolclasses", value = "api/schoolclasses")
+@RequestMapping(name = "api/schoolClasses", value = "api/schoolClasses")
 
 public class SchoolClassController {
 
