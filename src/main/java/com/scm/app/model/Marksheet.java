@@ -3,6 +3,7 @@ package com.scm.app.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "marksheets")
@@ -18,13 +19,13 @@ public class Marksheet {
     private String subject;
     private Integer marksObtained;
     private Integer totalMarks;
-    private LocalDate examDate;
+    private Date examDate;
 
     // Constructors
     public Marksheet() {}
 
     public Marksheet(Long studentId, Long accountId, String studentName, String subject,
-                     Integer marksObtained, Integer totalMarks, LocalDate examDate) {
+                     Integer marksObtained, Integer totalMarks, Date examDate) {
         this.studentId = studentId;
         this.accountId = accountId;
         this.studentName = studentName;
@@ -90,11 +91,11 @@ public class Marksheet {
         this.totalMarks = totalMarks;
     }
 
-    public LocalDate getExamDate() {
+    public Date getExamDate() {
         return examDate;
     }
 
-    public void setExamDate(LocalDate examDate) {
+    public void setExamDate(Date examDate) {
         this.examDate = examDate;
     }
 }

@@ -2,7 +2,7 @@ package com.scm.app.model;
 
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "exams")
@@ -14,7 +14,7 @@ public class Exam {
 
     private String examName;
     private String subject;
-    private LocalDate examDate;
+    private Date examDate;
     private String examType;
     private Integer totalMarks;
     private Long accountId;
@@ -29,8 +29,8 @@ public class Exam {
     public String getSubject() { return subject; }
     public void setSubject(String subject) { this.subject = subject; }
 
-    public LocalDate getExamDate() { return examDate; }
-    public void setExamDate(LocalDate examDate) { this.examDate = examDate; }
+    public Date getExamDate() { return examDate; }
+    public void setExamDate(Date examDate) { this.examDate = examDate; }
 
     public String getExamType() { return examType; }
     public void setExamType(String examType) { this.examType = examType; }
