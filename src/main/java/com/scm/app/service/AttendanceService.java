@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.scm.app.model.*;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +37,11 @@ public class AttendanceService {
 	@Autowired
 	StudentAttendanceMappingRepo attendanceMappingRepo;
 
+
+	@Autowired
+	private AuditLogger auditLogger;
+
+
 	public boolean updateBulkAttendance(StudentAttendanceRequest attendanceRequest) {
 
 		Attendance attendance = new Attendance();
@@ -55,6 +61,14 @@ public class AttendanceService {
 		}
 		if (!attendanceMapping.isEmpty()) {
 			attendanceMappingRepo.saveAll(attendanceMapping);
+			//  Audit Log for UPDATE
+			auditLogger.logAction(
+					attendance.getAccountId(),
+					attendance.getId(),
+					"Attendance",
+					"Edit",
+					attendance.getCreatedBy()
+			);
 		}
 
 		return true;
@@ -69,6 +83,15 @@ public class AttendanceService {
 				updateRequest.getSubjectId());
 		stm.setPresent(true);
 		attendanceMappingRepo.save(stm);
+
+		//  Audit Log for UPDATE
+		auditLogger.logAction(
+				attendance.getAccountId(),
+				attendance.getId(),
+				"Attendance",
+				"Edit",
+				attendance.getCreatedBy()
+		);
 		return true;
 
 	}

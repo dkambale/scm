@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.scm.app.model.Institute;
 
 @Repository
-public interface InstituteRepo extends JpaRepository<Institute, Integer> {
+public interface InstituteRepo extends JpaRepository<Institute, Long> {
 
 
     Page<Institute> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);

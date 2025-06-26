@@ -34,7 +34,7 @@ public class RoleController {
 	}
 
 	@PostMapping("/getAll/{accountId}")
-	public PaginatedResponse<Role> getAll(@PathVariable("accountId") Integer accountId,
+	public PaginatedResponse<Role> getAll(@PathVariable("accountId") Long accountId,
 												  @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);
 	}

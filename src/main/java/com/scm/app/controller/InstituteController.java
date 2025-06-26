@@ -38,7 +38,7 @@ public class InstituteController {
 	}
 	
 	@GetMapping("/getById")
-	public Institute getById(@RequestParam("id") Integer id) {
+	public Institute getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 	

@@ -8,10 +8,10 @@ import com.scm.app.model.SchoolClass;
 
 public interface SchoolClassRepo extends JpaRepository<SchoolClass,Long> {
 
-    SchoolClass findByNameAndAccountId(String name, Integer accountId);
+    SchoolClass findByNameAndAccountId(String name, Long accountId);
 
-    Page<SchoolClass> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<SchoolClass> findByNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Page<SchoolClass> findByAccountId(Integer accountId, Pageable pageable);
+    Page<SchoolClass> findByAccountId(Long accountId, Pageable pageable);
 
 }

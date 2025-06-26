@@ -20,7 +20,24 @@ public class Marksheet {
     private Integer marksObtained;
     private Integer totalMarks;
     private Date examDate;
+    private String createdBy;
+    private String modifiedBy;
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
     // Constructors
     public Marksheet() {}
 

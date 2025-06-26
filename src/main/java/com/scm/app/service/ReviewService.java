@@ -3,10 +3,10 @@ package com.scm.app.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.scm.app.model.Role;
-import com.scm.app.model.User;
+import com.scm.app.model.*;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.scm.app.model.Review;
 import com.scm.app.repo.ReviewRepo;
 
 @Service
@@ -23,9 +22,22 @@ public class ReviewService
 	@Autowired
 	ReviewRepo repo;
 
-	public Review saveReview(Review review) {
+	@Autowired
+	private AuditLogger auditLogger;
 
-		return repo.save(review);
+	public Review saveReview(Review review) {
+		Review saved = repo.save(review);
+
+		auditLogger.logAction(
+				review.getAccountId(),
+				saved.getId(),
+				"Review",
+				"Create",
+				review.getCreatedBy()
+		);
+
+
+		return saved;
 	}
 
 	public PaginatedResponse<Review> getAll(PaginationRequest request, Integer accountId) {
@@ -49,13 +61,29 @@ public class ReviewService
 		return response;
 	}
 
-	public Review getById(Integer id) {
+	public Review getById(Long id) {
 		Optional<Review> std = repo.findById(id);
 		return std.isPresent()? std.get() : new Review();
 	}
 	
 	public boolean deleteById(Long id) {
-		repo.deleteById(id.intValue());
-		return true;
+
+		Review existing = repo.findById(id).orElse(null);
+		if (existing != null) {
+			repo.deleteById(id);
+
+			//  Audit Log for DELETE
+			auditLogger.logAction(
+					existing.getAccountId(),
+					existing.getId(),
+					"Review",
+					"Delete",
+					existing.getCreatedBy()
+			);
+			return true;
+
+		}else {
+			return false;
+		}
 	}
 }

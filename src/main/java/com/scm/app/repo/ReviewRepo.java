@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.scm.app.model.Review;
 
 @Repository
-public interface ReviewRepo extends JpaRepository<Review, Integer>
+public interface ReviewRepo extends JpaRepository<Review, Long>
 {
 
     Page<Review> findByDescriptionContainingAndAccountId(String search, Integer accountId, Pageable pageable);

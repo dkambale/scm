@@ -26,11 +26,28 @@ public class User {
     private String status;
     private Long divisionId;
     private Long classId;
-    private Integer accountId;
+    private Long accountId;
     @ManyToOne
     private Role role;
 
+    private String createdBy;
+    private String modifiedBy;
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
     public Long getRollNo() {
         return rollNo;
     }
@@ -87,11 +104,11 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
-    public Integer getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 

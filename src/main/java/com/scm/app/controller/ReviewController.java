@@ -37,7 +37,7 @@ public class ReviewController
 	}
 	
 	@GetMapping("/getById")
-	public Review getById(@RequestParam("id") Integer id) {
+	public Review getById(@RequestParam("id") Long id) {
 		return service.getById(id);
 	}
 	

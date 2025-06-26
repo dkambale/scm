@@ -11,10 +11,10 @@ public interface TeacherRepo extends JpaRepository<Teacher, Long> {
 
 	Teacher getByUserNameAndPassword(String userName, String password);
 
-    Page<Teacher> findByUserNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<Teacher> findByUserNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Page<Teacher> findByAccountId(Integer accountId, Pageable pageable);
+    Page<Teacher> findByAccountId(Long accountId, Pageable pageable);
 
 
-    long countByAccountId(Integer accountId);
+    long countByAccountId(Long accountId);
 }

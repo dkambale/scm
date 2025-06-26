@@ -1,11 +1,16 @@
 package com.scm.app.service;
 
 
+import com.scm.app.model.Assignment;
+import com.scm.app.model.AuditLog;
+import com.scm.app.model.Course;
 import com.scm.app.model.Exam;
 import com.scm.app.repo.ExamRepository;
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,9 +19,21 @@ public class  ExamService {
     @Autowired
     private ExamRepository examRepository;
 
+    @Autowired
+    private AuditLogger auditLogger;
 
     public Exam createExam(Exam exam) {
-        return examRepository.save(exam);
+        Exam saved = examRepository.save(exam);
+
+        //  Audit Log for CREATE
+        auditLogger.logAction(
+                exam.getAccountId(),
+                saved.getId(),
+                "Exam",
+                "Create",
+                exam.getCreatedBy()
+        );
+        return saved;
     }
 
 
@@ -38,12 +55,41 @@ public class  ExamService {
         existing.setExamType(updatedExam.getExamType());
         existing.setTotalMarks(updatedExam.getTotalMarks());
         existing.setAccountId(updatedExam.getAccountId());
-        return examRepository.save(existing);
+        Exam updated = examRepository.save(existing);
+
+
+        //  Audit Log for UPDATE
+        auditLogger.logAction(
+                updatedExam.getAccountId(),
+                updated.getId(),
+                "Exam",
+                "Edit",
+                updatedExam.getCreatedBy()
+        );
+
+
+
+        return updated;
     }
 
 
     public void deleteExam(Long id) {
-        examRepository.deleteById(id);
+        Exam existing = examRepository.findById(id).orElse(null);
+        if (existing != null) {
+            examRepository.deleteById(id);
+
+            //  Audit Log for DELETE
+            auditLogger.logAction(
+                    existing.getAccountId(),
+                    existing.getId(),
+                    "Exam",
+                    "Delete",
+                    existing.getCreatedBy()
+            );
+        }
+
+
+
     }
 
 

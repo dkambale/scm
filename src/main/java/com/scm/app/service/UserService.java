@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.scm.app.model.Course;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,9 @@ public class UserService {
 
 	@Autowired
 	UserRepo repo;
+
+	@Autowired
+	private AuditLogger auditLogger;
 	
 	public User saveUser(User usr) {
 
@@ -28,8 +33,19 @@ public class UserService {
 		if(byUserName!=null) {
 			throw new RuntimeException("User is Already");
 		}
+		User saved = repo.save(usr);
 
-		return repo.save(usr);
+		//  Audit Log for CREATE
+		auditLogger.logAction(
+				usr.getAccountId(),
+				saved.getId(),
+				"User",
+				"Create",
+				usr.getCreatedBy()
+		);
+		return saved;
+
+
 	}
 
 	public User updateUser(User usr) {
@@ -38,11 +54,23 @@ public class UserService {
 		if(byUserName!=null && !Objects.equals(usr.getId(), byUserName.getId())) {
 			throw new RuntimeException("User is Already");
 		}
+		User updated = repo.save(usr);
 
-		return repo.save(usr);
+		//  Audit Log for UPDATE
+		auditLogger.logAction(
+				usr.getAccountId(),
+				updated.getId(),
+				"User",
+				"Edit",
+				usr.getCreatedBy()
+		);
+
+		return updated;
+
+
 	}
 
-	public PaginatedResponse<User> getAll(PaginationRequest request, Integer accountId,String type) {
+	public PaginatedResponse<User> getAll(PaginationRequest request, Long accountId,String type) {
 
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortBy()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
@@ -70,7 +98,24 @@ public class UserService {
 	}
 	
 	public boolean deleteById(Long id) {
-		repo.deleteById(id);
-		return true;
+		User existing = repo.findById(id).orElse(null);
+		if (existing != null) {
+			repo.deleteById(id);
+
+			//  Audit Log for DELETE
+			auditLogger.logAction(
+					existing.getAccountId(),
+					existing.getId(),
+					"User",
+					"Delete",
+					existing.getCreatedBy()
+			);
+			return true;
+
+		}else {
+			return false;
+		}
+
+
 	}
 }

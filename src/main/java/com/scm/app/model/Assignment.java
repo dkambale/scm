@@ -34,13 +34,11 @@ public class Assignment {
 
    private  byte[] file;
 
-   private Integer accountId;
+   private Long accountId;
 
-   private Integer getAccountId() {
-       return accountId;
-   }
 
-    public void setAccountId(Integer accountId) {
+
+    public void setAccountId(Long accountId) {
          this.accountId = accountId;
     }
 
@@ -154,5 +152,9 @@ public class Assignment {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public Long getAccountId() {
+        return accountId;
     }
 }

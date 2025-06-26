@@ -1,12 +1,14 @@
 package com.scm.app.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.scm.app.model.User;
+
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,13 +25,26 @@ public class CourseService
 	@Autowired
 	CourseRepo repo;
 
+	@Autowired
+	private AuditLogger auditLogger;
+
 	public Course saveCourse(Course course) {
 		Course byUserName = repo.getByName(course.getName());
 		if(byUserName!=null) {
 			throw new RuntimeException("Course is Already");
 		}
 
-		return repo.save(course);
+		Course saved = repo.save(course);
+
+		//  Audit Log for CREATE
+		auditLogger.logAction(
+				course.getAccountId(),
+				saved.getId(),
+				"Course",
+				"Create",
+				course.getCreatedBy()
+		);
+		return saved;
 	}
 
 	public Course updateCourse(Course course) {
@@ -38,7 +53,19 @@ public class CourseService
 			throw new RuntimeException("Course is Already");
 		}
 
-		return repo.save(course);
+		Course updated = repo.save(course);
+
+		//  Audit Log for UPDATE
+		auditLogger.logAction(
+				course.getAccountId(),
+				updated.getId(),
+				"Course",
+				"Edit",
+				course.getCreatedBy()
+		);
+
+		return updated;
+
 	}
 
 	public PaginatedResponse<Course> getAll(PaginationRequest request, Integer accountId) {
@@ -70,8 +97,26 @@ public class CourseService
 	
 
 	public boolean deleteById(Long id) {
-		repo.deleteById(id);
-		return true;
+
+		Course existing = repo.findById(id).orElse(null);
+		if (existing != null) {
+			repo.deleteById(id);
+
+			//  Audit Log for DELETE
+			auditLogger.logAction(
+					existing.getAccountId(),
+					existing.getId(),
+					"Course",
+					"Delete",
+					existing.getCreatedBy()
+			);
+			return true;
+
+		}else {
+			return false;
+		}
+
+
 	}
 
 }

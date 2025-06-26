@@ -12,7 +12,7 @@ public class Institute {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String name;
 	// add address, code, mobile,phone,fax,email details
 	private String address;
@@ -20,13 +20,30 @@ public class Institute {
 	private String email;
 	private String faxNumber;
 	private String code;
-	private Integer accountId;
+	private Long accountId;
+	private String createdBy;
+	private String modifiedBy;
 
-	public Integer getAccountId() {
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+	public Long getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 
@@ -70,11 +87,11 @@ public class Institute {
 		this.code = code;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

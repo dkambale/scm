@@ -13,11 +13,11 @@ public interface UserRepo extends JpaRepository <User,Long>{
 
     User getByUserName(String userName);
 
-    Page<User> findByFirstNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<User> findByFirstNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Page<User> findByAccountId(Integer accountId, Pageable pageable);
+    Page<User> findByAccountId(Long accountId, Pageable pageable);
 
-    Page<User> findByAccountIdAndType(Integer accountId, String type, Pageable pageable);
+    Page<User> findByAccountIdAndType(Long accountId, String type, Pageable pageable);
 
-    Page<User> findByFirstNameContainingAndAccountIdAndType(String search, Integer accountId, String type, Pageable pageable);
+    Page<User> findByFirstNameContainingAndAccountIdAndType(String search, Long accountId, String type, Pageable pageable);
 }

@@ -22,7 +22,7 @@ public class DashboardController {
 
 	@GetMapping(name = "/getCounts/{accountId}", value = "/getCounts/{accountId}")
 	public ResponseEntity<Dashboard> getDashboard(@PathParam(value = "type") String type,
-	@PathVariable("accountId") Integer accountId) {
+	@PathVariable("accountId") Long accountId) {
 
 		try {
 			Dashboard dashbaord = dashboardService.getDashboard(type,accountId);

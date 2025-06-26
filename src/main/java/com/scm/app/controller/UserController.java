@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/getAll/{accountId}")
-    public PaginatedResponse<User> getAll(@PathVariable("accountId") Integer accountId,
+    public PaginatedResponse<User> getAll(@PathVariable("accountId") Long accountId,
                                           @RequestBody PaginationRequest paginationRequest,
                                           @RequestParam(value = "type", required = false) String type) {
         return service.getAll(paginationRequest, accountId,type);

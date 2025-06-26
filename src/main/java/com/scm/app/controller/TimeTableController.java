@@ -32,7 +32,7 @@ public class TimeTableController {
 	}
 
 	@PostMapping("/getAll/{accountId}")
-	public PaginatedResponse<TimeTable> getAll(@PathVariable("accountId") Integer accountId,
+	public PaginatedResponse<TimeTable> getAll(@PathVariable("accountId") Long accountId,
 										  @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);
 	}

@@ -24,7 +24,7 @@ public class DashboardService {
 	@Autowired
 	SubjectRepo subjectRepo;
 
-	public Dashboard getDashboard(String type,Integer accountId) {
+	public Dashboard getDashboard(String type,Long accountId) {
 		Dashboard dasahbaord = new Dashboard();
 		Map<String, String> map = new HashMap<>();
 		long teacherCount = teacherRepo.countByAccountId(accountId);

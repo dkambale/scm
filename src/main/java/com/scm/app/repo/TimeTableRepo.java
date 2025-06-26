@@ -8,8 +8,8 @@ import com.scm.app.model.TimeTable;
 
 public interface TimeTableRepo extends JpaRepository<TimeTable, Long> {
 
-    Page<TimeTable> findByClassNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<TimeTable> findByClassNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Page<TimeTable> findByAccountId(Integer accountId, Pageable pageable);
+    Page<TimeTable> findByAccountId(Long accountId, Pageable pageable);
 
 }

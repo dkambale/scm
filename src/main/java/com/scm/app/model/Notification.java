@@ -19,7 +19,24 @@ public class Notification {
     private String recipient;
     private String status;
     private LocalDateTime timestamp=LocalDateTime.now();
+    private String createdBy;
+    private String modifiedBy;
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
     // Constructors
     public Notification() {
 

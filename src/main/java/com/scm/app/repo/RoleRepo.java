@@ -7,11 +7,11 @@ import com.scm.app.model.Role;
 
 public interface RoleRepo extends JpaRepository<Role,Long> {
 
-    Role findByNameAndAccountId(String name, Integer accountId);
+    Role findByNameAndAccountId(String name, Long accountId);
 
-    Page<Role> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<Role> findByNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Page<Role> findByAccountId(Integer accountId, Pageable pageable);
+    Page<Role> findByAccountId(Long accountId, Pageable pageable);
 
 }
 

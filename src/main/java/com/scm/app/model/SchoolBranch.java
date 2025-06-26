@@ -21,13 +21,30 @@ public class SchoolBranch {
 	private String code;
 	private Long instituteId;
 
-	private Integer accountId;
+	private Long accountId;
+	private String createdBy;
+	private String modifiedBy;
 
-	public Integer getAccountId() {
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+	public Long getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 

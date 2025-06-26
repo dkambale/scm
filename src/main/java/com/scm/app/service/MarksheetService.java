@@ -1,16 +1,21 @@
 package com.scm.app.service;
 
 
+import com.scm.app.model.Assignment;
+import com.scm.app.model.Course;
 import com.scm.app.model.Marksheet;
 import com.scm.app.model.response.PaginatedResponse;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.repo.MarksheetRepository;
 
+import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MarksheetService {
@@ -18,9 +23,24 @@ public class MarksheetService {
     @Autowired
     private MarksheetRepository repo;
 
+    @Autowired
+    private AuditLogger auditLogger;
+
+
 
     public Marksheet saveMarksheet(Marksheet marksheet) {
-        return repo.save(marksheet);
+        Marksheet saved = repo.save(marksheet);
+
+        auditLogger.logAction(
+                marksheet.getAccountId(),
+                saved.getId(),
+                "Marksheet",
+                "Create",
+                marksheet.getCreatedBy()
+        );
+
+
+        return saved;
     }
 
 
@@ -35,23 +55,37 @@ public class MarksheetService {
 
 
     public Marksheet updateMarksheet(Long id, Marksheet updated) {
-        Marksheet existing = repo.findById(id).orElse(null);
-        if (existing != null) {
-            existing.setStudentId(updated.getStudentId());
-            existing.setAccountId(updated.getAccountId());
-            existing.setStudentName(updated.getStudentName());
-            existing.setSubject(updated.getSubject());
-            existing.setMarksObtained(updated.getMarksObtained());
-            existing.setTotalMarks(updated.getTotalMarks());
-            existing.setExamDate(updated.getExamDate());
-            return repo.save(existing);
-        }
-        return null;
+       Marksheet updatedMarksheet = repo.save(updated);
+
+        //  Audit Log for UPDATE
+        auditLogger.logAction(
+                updated.getAccountId(),
+                updatedMarksheet.getId(),
+                "Marksheet",
+                "Edit",
+                updated.getCreatedBy()
+        );
+
+        return updated;
+
+
     }
 
 
     public void deleteMarksheet(Long id) {
-        repo.deleteById(id);
+        Marksheet existing = repo.findById(id).orElse(null);
+        if (existing != null) {
+            repo.deleteById(id);
+
+            //  Audit Log for DELETE
+            auditLogger.logAction(
+                    existing.getAccountId(),
+                    existing.getId(),
+                    "Marksheet",
+                    "Delete",
+                    existing.getCreatedBy()
+            );
+        }
     }
 
 

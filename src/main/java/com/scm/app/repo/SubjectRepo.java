@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.scm.app.model.Subject;
 
 public interface SubjectRepo extends JpaRepository<Subject, Long> {
-    Page<Subject> findByNameContainingAndAccountId(String search, Integer accountId, Pageable pageable);
+    Page<Subject> findByNameContainingAndAccountId(String search, Long accountId, Pageable pageable);
 
-    Subject findByNameAndAccountId(String name, Integer accountId);
+    Subject findByNameAndAccountId(String name, Long accountId);
 
-    long countByAccountId(Integer accountId);
+    long countByAccountId(Long accountId);
 
-    Page<Subject> findByAccountId(Integer accountId, Pageable pageable);
+    Page<Subject> findByAccountId(Long accountId, Pageable pageable);
 
 }

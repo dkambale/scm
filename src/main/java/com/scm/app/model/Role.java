@@ -34,13 +34,31 @@ public class Role {
 	@OneToMany(targetEntity = Permission.class, cascade = CascadeType.ALL)
 	private Set<Permission> permissions;
 
-	private Integer accountId;
+	private Long accountId;
 
-	public Integer getAccountId() {
+	private String createdBy;
+	private String modifiedBy;
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+	public Long getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 

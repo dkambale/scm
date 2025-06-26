@@ -33,7 +33,7 @@ public class SchoolClassController {
 	}
 
 	@PostMapping("/getAll/{accountId}")
-	public PaginatedResponse<SchoolClass> getAll(@PathVariable("accountId") Integer accountId,
+	public PaginatedResponse<SchoolClass> getAll(@PathVariable("accountId") Long accountId,
 											 @RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);
 	}
