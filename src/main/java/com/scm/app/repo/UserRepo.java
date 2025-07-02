@@ -20,4 +20,7 @@ public interface UserRepo extends JpaRepository <User,Long>{
     Page<User> findByAccountIdAndType(Long accountId, String type, Pageable pageable);
 
     Page<User> findByFirstNameContainingAndAccountIdAndType(String search, Long accountId, String type, Pageable pageable);
+
+    Page<User> findByFirstNameContaining(String search, Pageable pageable);
+
 }

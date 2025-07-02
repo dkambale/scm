@@ -36,6 +36,13 @@ public class Assignment {
 
    private Long accountId;
 
+    private Long classId;
+    private Long divisionId;
+    public Long getClassId() { return classId; }
+    public void setClassId(Long classId) { this.classId = classId; }
+
+    public Long getDivisionId() { return divisionId; }
+    public void setDivisionId(Long divisionId) { this.divisionId = divisionId; }
 
 
     public void setAccountId(Long accountId) {

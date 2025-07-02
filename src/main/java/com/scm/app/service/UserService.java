@@ -118,4 +118,31 @@ public class UserService {
 
 
 	}
+
+
+	public PaginatedResponse<User> getAllUsers(PaginationRequest request) {
+		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ?
+				Sort.by(request.getSortBy()).ascending() :
+				Sort.by(request.getSortBy()).descending();
+
+		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
+		Page<User> userPage;
+
+		if (request.getSearch() != null && !request.getSearch().isEmpty()) {
+			userPage = repo.findByFirstNameContaining(request.getSearch(), pageable);
+		} else {
+			userPage = repo.findAll(pageable);
+		}
+
+		PaginatedResponse<User> response = new PaginatedResponse<>();
+		response.setContent(userPage.getContent());
+		response.setPageNumber(userPage.getNumber());
+		response.setPageSize(userPage.getSize());
+		response.setTotalElements(userPage.getTotalElements());
+		response.setTotalPages(userPage.getTotalPages());
+		response.setLastPage(userPage.isLast());
+
+		return response;
+	}
+
 }

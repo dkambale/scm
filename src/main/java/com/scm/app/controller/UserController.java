@@ -56,4 +56,11 @@ public class UserController {
         return service.deleteById(id);
     }
 
+
+    @PostMapping("/getAllUsers")
+    public PaginatedResponse<User> getAllUsers(@RequestBody PaginationRequest paginationRequest) {
+        return service.getAllUsers(paginationRequest);
+    }
+
+
 }
