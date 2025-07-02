@@ -12,79 +12,106 @@ import jakarta.persistence.Table;
 @Table(name = "attendance")
 public class Attendance {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private Long schooldClassId;
-	private Long divisionId;
-	private Date attendanceDate;
-	private Long subjectId;
-	private Long accountId;
-	private String createdBy;
-	private String modifiedBy;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long schooldClassId;
+    private String className;
+    private String divisionName;
+    private Long divisionId;
+    private Date attendanceDate;
+    private Long subjectId;
+    private String subjectName;
+    private Long accountId;
+    private String createdBy;
+    private String modifiedBy;
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public String getModifiedBy() {
-		return modifiedBy;
-	}
+    public String getDivisionName() {
+        return divisionName;
+    }
 
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
+    }
 
-	public Long getAccountId() {
-		return accountId;
-	}
+    public String getSubjectName() {
+        return subjectName;
+    }
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
-	public Long getSchooldClassId() {
-		return schooldClassId;
-	}
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
 
-	public void setSchooldClassId(Long schooldClassId) {
-		this.schooldClassId = schooldClassId;
-	}
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
 
-	public Long getDivisionId() {
-		return divisionId;
-	}
+    public Long getAccountId() {
+        return accountId;
+    }
 
-	public void setDivisionId(Long divisionId) {
-		this.divisionId = divisionId;
-	}
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
 
-	public Date getAttendanceDate() {
-		return attendanceDate;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setAttendanceDate(Date attendanceDate) {
-		this.attendanceDate = attendanceDate;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getSubjectId() {
-		return subjectId;
-	}
+    public Long getSchooldClassId() {
+        return schooldClassId;
+    }
 
-	public void setSubjectId(Long subjectId) {
-		this.subjectId = subjectId;
-	}
+    public void setSchooldClassId(Long schooldClassId) {
+        this.schooldClassId = schooldClassId;
+    }
+
+    public Long getDivisionId() {
+        return divisionId;
+    }
+
+    public void setDivisionId(Long divisionId) {
+        this.divisionId = divisionId;
+    }
+
+    public Date getAttendanceDate() {
+        return attendanceDate;
+    }
+
+    public void setAttendanceDate(Date attendanceDate) {
+        this.attendanceDate = attendanceDate;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
 
 }

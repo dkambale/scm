@@ -11,10 +11,12 @@ import com.scm.app.model.Attendance;
 
 public interface AttendanceRepo extends JpaRepository<Attendance, Long> {
 
-	@Query(" from Attendance a where a.schooldClassId =:schooldClassId and a.divisionId =:divisionId and a.attendanceDate=:attendanceDate and a.subjectId =:subjectId")
-	Attendance getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(Long schooldClassId, Long divisionId,
-			Date attendanceDate, Long subjectId);
+	@Query(" from Attendance a where a.schooldClassId =:schooldClassId and a.divisionId =:divisionId and a.attendanceDate=:attendanceDate and a.subjectId =:subjectId and a.accountId =:accountId")
+	Attendance getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectIdAndAccountId(Long schooldClassId, Long divisionId,
+			Date attendanceDate, Long subjectId,Long accountId);
 
+	Attendance getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(Long schooldClassId, Long divisionId,
+																			 Date attendanceDate, Long subjectId);
     Page<Attendance> findByAccountId(Integer accountId, Pageable pageable);
 
 

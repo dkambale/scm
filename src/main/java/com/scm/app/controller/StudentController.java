@@ -63,12 +63,12 @@ public class StudentController {
 		return service.deleteById(id);
 	}
 
-	@GetMapping("/getByDivisionIdAndClassId")
+	@GetMapping("/getByDivisionIdAndClassIdAndAccountId")
 	public ResponseEntity<List<Student>> getByDivisionIdAndClassId(@RequestParam("classId") Long classId,
-			@RequestParam("divisionId") Long divisionId) {
+			@RequestParam("divisionId") Long divisionId,@RequestParam("accountId") Long accountId) {
 
 		try {
-			List<Student> institue = service.getByDivisionIdAndClassId(classId, divisionId);
+			List<Student> institue = service.getByDivisionIdAndClassIdAndAccountId(classId, divisionId,accountId);
 			return new ResponseEntity<List<Student>>(institue, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<List<Student>>(HttpStatus.INTERNAL_SERVER_ERROR);
