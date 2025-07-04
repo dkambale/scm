@@ -7,6 +7,7 @@ import com.scm.app.model.Course;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,21 +36,24 @@ public class AttendanceController {
 
 	}
 
-	@PostMapping(name = "/updateStudent", value = "/updateStudent")
-	public ResponseEntity<Boolean> updateStudent(@RequestBody StudentAttendanceUpdateRequest attendanceRequest) {
+	@PostMapping(name = "/updateStudent/{accountId}", value = "/updateStudent/{accountId}")
+	public ResponseEntity<Boolean> updateStudent(@RequestBody StudentAttendanceUpdateRequest attendanceRequest,
+												 @PathVariable("accountId") Long accountId) {
 
-		Boolean result = service.updateStudentAttendance(attendanceRequest);
+		Boolean result = service.updateStudentAttendance(attendanceRequest,accountId);
 
 		return new ResponseEntity<Boolean>(result, HttpStatus.OK);
 
 	}
 
-	@GetMapping(name = "/getAttendance")
+	@GetMapping("/getAttendance/{accountId}")
 	public ResponseEntity<StudentAttendanceResponse> getStudentAttendanceResponse(
 			@PathParam("divisionId") long divisionId, @PathParam("classId") long classId,
-			@PathParam("subjectId") long subjectId, @PathParam("date") Date date) {
+			@PathParam("subjectId") long subjectId,
+			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+			@PathVariable("accountId") Long accountId) {
 
-		StudentAttendanceResponse response = service.getStudentAttendance(divisionId, classId, subjectId, date);
+		StudentAttendanceResponse response = service.getStudentAttendance(divisionId, classId, subjectId, date,accountId);
 		return new ResponseEntity<StudentAttendanceResponse>(response, HttpStatus.OK);
 	}
 

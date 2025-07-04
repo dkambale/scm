@@ -75,7 +75,7 @@ public class UserService {
 		Sort sort = request.getSortDir().equalsIgnoreCase("asc") ? Sort.by(request.getSortBy()).ascending() : Sort.by(request.getSortBy()).descending();
 		Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
 		Page<User> userPage =null;
-		if(request.getSearch()!= null && request.getSearch().isEmpty()) {
+		if(request.getSearch()!= null && !request.getSearch().isEmpty()) {
 			userPage = repo.findByFirstNameContainingAndAccountIdAndType(request.getSearch(),accountId,type, pageable);
 		} else {
 			userPage =repo.findByAccountIdAndType(accountId,type,pageable);

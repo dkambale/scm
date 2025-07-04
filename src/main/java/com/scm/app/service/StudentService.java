@@ -82,8 +82,8 @@ public class StudentService {
 
 	}
 
-	public List<Student> getByDivisionIdAndClassId(Long classId, Long divisionId) {
-		return repo.getByDivisionIdAndClassId(divisionId, classId);
+	public List<Student> getByDivisionIdAndClassIdAndAccountId(Long classId, Long divisionId,Long accountId) {
+		return repo.getByDivisionIdAndClassIdAndAccountId(divisionId, classId,accountId);
 	}
 	
 }

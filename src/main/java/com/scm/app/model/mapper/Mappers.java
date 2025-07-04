@@ -2,6 +2,7 @@ package com.scm.app.model.mapper;
 
 import com.scm.app.model.Student;
 import com.scm.app.model.StudentAttendanceMapping;
+import com.scm.app.model.User;
 import com.scm.app.model.requests.StudentPresenty;
 
 public class Mappers {
@@ -16,12 +17,14 @@ public class Mappers {
 
 	}
 
-	public static StudentPresenty convertTo(Student ele) {
+	public static StudentPresenty convertTo(User ele) {
 		
 		StudentPresenty sp = new StudentPresenty();
 		sp.setIsPresent(false);
-		sp.setStudentId(ele.getRoleId());
-		sp.setStudentName(ele.getName());
+		sp.setStudentId(ele.getId());
+		sp.setStudentRollNo(ele.getRollNo());
+		sp.setStudentName(ele.getUserName());
+
 		return sp;
 	}
 

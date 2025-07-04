@@ -10,62 +10,71 @@ import jakarta.persistence.Table;
 @Table(name = "student_attendance_mapping")
 public class StudentAttendanceMapping {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	// handle by onemany
-	private Long attendanceId;
-	private Long studentId;
-	private boolean isPresent;
-	private String studentName;
-	private Integer accountId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    // handle by onemany
+    private Long attendanceId;
+    private Long studentId;
+    private boolean isPresent;
+    private String studentName;
+    private Integer accountId;
+    private Long studentRollNo;
 
-	public Integer getAccountId() {
-		return accountId;
-	}
+    public Long getStudentRollNo() {
+        return studentRollNo;
+    }
 
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
+    public void setStudentRollNo(Long studentRollNo) {
+        this.studentRollNo = studentRollNo;
+    }
 
-	public String getStudentName() {
-		return studentName;
-	}
+    public Integer getAccountId() {
+        return accountId;
+    }
 
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
-	}
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public String getStudentName() {
+        return studentName;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
-	public Long getAttendanceId() {
-		return attendanceId;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setAttendanceId(Long attendanceId) {
-		this.attendanceId = attendanceId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getStudentId() {
-		return studentId;
-	}
+    public Long getAttendanceId() {
+        return attendanceId;
+    }
 
-	public void setStudentId(Long studentId) {
-		this.studentId = studentId;
-	}
+    public void setAttendanceId(Long attendanceId) {
+        this.attendanceId = attendanceId;
+    }
 
-	public boolean isPresent() {
-		return isPresent;
-	}
+    public Long getStudentId() {
+        return studentId;
+    }
 
-	public void setPresent(boolean isPresent) {
-		this.isPresent = isPresent;
-	}
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public boolean isPresent() {
+        return isPresent;
+    }
+
+    public void setPresent(boolean isPresent) {
+        this.isPresent = isPresent;
+    }
 
 }

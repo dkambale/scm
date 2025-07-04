@@ -10,7 +10,7 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
 
 	Student getByUserNameAndPassword(String userName, String password);
 
-	List<Student> getByDivisionIdAndClassId(Long divisionId, Long classId);
+	List<Student> getByDivisionIdAndClassIdAndAccountId(Long divisionId, Long classId,Long accountId);
 
     long countByAccountId(Long accountId);
 }

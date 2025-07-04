@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.scm.app.model.*;
 import com.scm.app.model.requests.PaginationRequest;
 import com.scm.app.model.response.PaginatedResponse;
+import com.scm.app.repo.UserRepo;
 import com.scm.app.util.AuditLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,7 @@ public class AttendanceService {
 	AttendanceRepo attendanceRepo;
 
 	@Autowired
-	StudentRepo studentRepo;
+	UserRepo userRepo;
 
 	@Autowired
 	StudentAttendanceMappingRepo attendanceMappingRepo;
@@ -49,6 +50,10 @@ public class AttendanceService {
 		attendance.setDivisionId(attendanceRequest.getDivisionId());
 		attendance.setSchooldClassId(attendanceRequest.getClassId());
 		attendance.setSubjectId(attendance.getSubjectId());
+		attendance.setAccountId(attendanceRequest.getAccountId());
+		attendance.setClassName(attendanceRequest.getClassName());
+		attendance.setDivisionName(attendanceRequest.getDivisionName());
+		attendance.setSubjectName(attendanceRequest.getSubjectName());
 		attendance = attendanceRepo.save(attendance);
 
 		List<StudentAttendanceMapping> attendanceMapping = new ArrayList<>();
@@ -57,6 +62,9 @@ public class AttendanceService {
 			stm.setAttendanceId(attendance.getId());
 			stm.setPresent(sp.getIsPresent());
 			stm.setStudentId(sp.getStudentId());
+			stm.setStudentRollNo(sp.getStudentRollNo());
+			stm.setAccountId(attendanceRequest.getAccountId().intValue());
+
 			attendanceMapping.add(stm);
 		}
 		if (!attendanceMapping.isEmpty()) {
@@ -74,11 +82,11 @@ public class AttendanceService {
 		return true;
 	}
 
-	public boolean updateStudentAttendance(StudentAttendanceUpdateRequest updateRequest) {
+	public boolean updateStudentAttendance(StudentAttendanceUpdateRequest updateRequest,Long accountId) {
 
-		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(
+		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectIdAndAccountId(
 				updateRequest.getClassId(), updateRequest.getDivisionId(), updateRequest.getAttendanceDate(),
-				updateRequest.getSubjectId());
+				updateRequest.getSubjectId(),accountId);
 		StudentAttendanceMapping stm = attendanceMappingRepo.getByAttendanceIdAndStudentId(attendance.getId(),
 				updateRequest.getSubjectId());
 		stm.setPresent(true);
@@ -96,9 +104,9 @@ public class AttendanceService {
 
 	}
 
-	public StudentAttendanceResponse getStudentAttendance(long divisionId, long classId, long subjectId, Date date) {
-		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectId(classId,
-				divisionId, date, subjectId);
+	public StudentAttendanceResponse getStudentAttendance(long divisionId, long classId, long subjectId, Date date,Long accountId) {
+		Attendance attendance = attendanceRepo.getBySchooldClassIdAndDivisionIdAndAttendanceDateAndSubjectIdAndAccountId(classId,
+				divisionId, date, subjectId,accountId);
 		StudentAttendanceResponse response = new StudentAttendanceResponse();
 		response.setClassId(classId);
 		response.setDivisionId(divisionId);
@@ -110,7 +118,7 @@ public class AttendanceService {
 			response.setStudentIds(sps);
 		} else {
 
-			List<Student> students = studentRepo.getByDivisionIdAndClassId(divisionId, classId);
+			List<User> students = userRepo.getByDivisionIdAndClassIdAndAccountId(divisionId, classId,accountId);
 			List<StudentPresenty> stms = students.stream().map(ele -> Mappers.convertTo(ele))
 					.collect(Collectors.toList());
 			response.setStudentIds(stms);

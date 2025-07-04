@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.scm.app.model.User;
 
+import java.util.List;
+
 public interface UserRepo extends JpaRepository <User,Long>{
 
     User getByUserNameAndPassword(String userName, String password);
@@ -21,6 +23,8 @@ public interface UserRepo extends JpaRepository <User,Long>{
 
     Page<User> findByFirstNameContainingAndAccountIdAndType(String search, Long accountId, String type, Pageable pageable);
 
+
     Page<User> findByFirstNameContaining(String search, Pageable pageable);
 
+    List<User> getByDivisionIdAndClassIdAndAccountId(Long divisionId, Long classId, Long accountId);
 }

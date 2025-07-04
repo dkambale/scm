@@ -41,3 +41,10 @@ secrets.yml
 .sts4-cache
 .git-hooks/
 node_modules
+/.idea/.gitignore
+/uploads/8da0ee41-7c31-435d-8138-846469a6a082_assignments.jsx
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml

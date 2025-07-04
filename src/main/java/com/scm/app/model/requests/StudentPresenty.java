@@ -5,6 +5,14 @@ public class StudentPresenty {
 	Long studentId;
 	Boolean isPresent;
 	String studentName;
+	Long studentRollNo;
+
+	public Long getStudentRollNo() {
+		return studentRollNo;
+	}
+	public void setStudentRollNo(Long studentRollNo) {
+		this.studentRollNo = studentRollNo;
+	}
 
 	public String getStudentName() {
 		return studentName;
