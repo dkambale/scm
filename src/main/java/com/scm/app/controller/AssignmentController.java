@@ -114,17 +114,19 @@ public class AssignmentController {
         Assignment savedAssignment = service.saveAssignment(assignment);
 
         // Fetch all students from class and division
-        List<Student> students = studentService.getByDivisionIdAndClassId(dto.getClassId(), dto.getDivisionId());
+//        List<Student> students = studentService.getByDivisionIdAndClassId(dto.getClassId(), dto.getDivisionId());
 
         // Here, you can log or simulate that assignment is delivered to students
-        students.forEach(student -> {
-            System.out.println("Assignment ID: " + savedAssignment.getId() + " sent to Student Roll No: " + student.getRollno());
-            // Optional: send notification or create student-assignment mapping if required
-        });
+//        students.forEach(student -> {
+//            System.out.println("Assignment ID: " + savedAssignment.getId() + " sent to Student Roll No: " + student.getRollno());
+//            // Optional: send notification or create student-assignment mapping if required
+//        });
 
         return ResponseEntity.ok("Assignment uploaded for classId: " + dto.getClassId() +
-                " and divisionId: " + dto.getDivisionId() +
-                ". Assigned to " + students.size() + " students.");
+                " and divisionId: " + dto.getDivisionId() );
+//        return ResponseEntity.ok("Assignment uploaded for classId: " + dto.getClassId() +
+//                        " and divisionId: " + dto.getDivisionId() +
+//                ". Assigned to " + students.size() + " students.");
     }
 
 
