@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.scm.app.model.*;
 import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.ClassDivisionResponse;
 import com.scm.app.model.response.PaginatedResponse;
 import com.scm.app.repo.UserRepo;
 import com.scm.app.util.AuditLogger;
@@ -41,6 +42,8 @@ public class AttendanceService {
 
 	@Autowired
 	private AuditLogger auditLogger;
+
+
 
 
 	public boolean updateBulkAttendance(StudentAttendanceRequest attendanceRequest) {
@@ -148,4 +151,13 @@ public class AttendanceService {
 
 		return response;
 	}
+
+
+
+	public List<ClassDivisionResponse> getAllClassAndDivisionByAccountId(Long accountId) {
+		return attendanceRepo.findDistinctClassAndDivisionByAccountId(accountId);
+	}
+
+
+
 }

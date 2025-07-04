@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.scm.app.model.Course;
 import com.scm.app.model.requests.PaginationRequest;
+import com.scm.app.model.response.ClassDivisionResponse;
 import com.scm.app.model.response.PaginatedResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -74,5 +75,14 @@ public class AttendanceController {
 											@RequestBody PaginationRequest paginationRequest) {
 		return service.getAll(paginationRequest, accountId);
 	}
+
+	@GetMapping("/class-division/{accountId}")
+	public ResponseEntity<List<ClassDivisionResponse>> getClassDivisionByAccountId(@PathVariable Long accountId) {
+		List<ClassDivisionResponse> list = service.getAllClassAndDivisionByAccountId(accountId);
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+
+
+
 
 }

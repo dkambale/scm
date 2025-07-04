@@ -1,7 +1,9 @@
 package com.scm.app.repo;
 
 import java.util.Date;
+import java.util.List;
 
+import com.scm.app.model.response.ClassDivisionResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +21,9 @@ public interface AttendanceRepo extends JpaRepository<Attendance, Long> {
 																			 Date attendanceDate, Long subjectId);
     Page<Attendance> findByAccountId(Integer accountId, Pageable pageable);
 
+
+	@Query("SELECT DISTINCT new com.scm.app.model.ClassDivisionStudent(a.schooldClassId, a.divisionId) " +
+			"FROM Attendance a WHERE a.accountId = :accountId")
+	List<ClassDivisionResponse> findDistinctClassAndDivisionByAccountId(Long accountId);
 
 }

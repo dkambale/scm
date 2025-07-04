@@ -17,13 +17,18 @@ public class ClassDivisionStudent {
 	private Long divisionId;
 	//handle by oneToMany
 	private Long studentId;
-	private Integer accountId;
+	private Long accountId;
 
-	public Integer getAccountId() {
+	public ClassDivisionStudent (Long schoolClassId, Long divisionId) {
+		this.schoolClassId = schoolClassId;
+		this.divisionId = divisionId;
+	}
+
+	public Long getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(Integer accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 
